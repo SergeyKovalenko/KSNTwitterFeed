@@ -1,0 +1,30 @@
+{
+  "name": "KSNXibLoadedView",
+  "version": "1.4",
+  "summary": "KSNXibLoadedView.",
+  "description": "UIView loaded from xib",
+  "homepage": "https://bitbucket.org/atomicip/ksnxibloadedview",
+  "license": "MIT",
+  "authors": {
+    "Sergey Kovalenko": "papuly@gmail.com"
+  },
+  "source": {
+    "git": "https://bitbucket.org/atomicip/ksnxibloadedview.git",
+    "branch": "master"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "KSNXibLoadedView": [
+      "Pod/Assets/*.png"
+    ]
+  },
+  "dependencies": {
+    "Masonry": [
+
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "KSNObservable",
+  "version": "1.1",
+  "summary": "Observer pattern.",
+  "description": "Observer pattern implementation.",
+  "homepage": "https://bitbucket.org/atomicip/ksnobservable",
+  "license": "MIT",
+  "authors": {
+    "Sergey Kovalenko": "papuly@gmail.com"
+  },
+  "source": {
+    "git": "https://atomicip@bitbucket.org/atomicip/ksnobservable.git",
+    "branch": "master"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "public_header_files": "Pod/Classes/**/*.h"
+}

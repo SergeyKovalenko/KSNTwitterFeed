@@ -1,0 +1,48 @@
+{
+  "name": "KSNFeed",
+  "version": "1.3",
+  "summary": "KSNFeed",
+  "description": "A set of classes for creating feeds with pagination and etc.",
+  "homepage": "https://bitbucket.org/atomicip/ksnfeed",
+  "license": "MIT",
+  "authors": {
+    "Sergey Kovalenko": "papuly@gmail.com"
+  },
+  "source": {
+    "git": "https://bitbucket.org/atomicip/ksnfeed.git",
+    "branch": "master"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*.{m,h}",
+  "ios": {
+    "resource_bundles": {
+      "KSNFeedXib": "Pod/Classes/**/*.{xib,nib}"
+    }
+  },
+  "dependencies": {
+    "Masonry": [
+
+    ],
+    "ReactiveCocoa": [
+      "2.5"
+    ],
+    "KSNUtils": [
+
+    ],
+    "KSNDataSource": [
+
+    ],
+    "KSNXibLoadedView": [
+
+    ],
+    "KSNErrorHandler": [
+
+    ],
+    "KSNObservable": [
+
+    ]
+  }
+}

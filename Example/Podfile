@@ -1,11 +1,52 @@
 use_frameworks!
+inhibit_all_warnings!
+
+project 'KSNTwitterFeed'
+
+use_frameworks!
+
+def shared_pods
+    # Private pods (from KSNTwitterFeed.podspec)
+    pod 'KSNObservable', :path => '../Development Pods/KSNObservable'
+    pod 'KSNErrorHandler', :path => '../Development Pods/KSNErrorHandler'
+    pod 'KSNNetworkClient', :path => '../Development Pods/KSNNetworkClient'
+    pod 'KSNDataSource', :path => '../Development Pods/KSNDataSource'
+    pod 'KSNFeed', :path => '../Development Pods/KSNFeed'
+    pod 'KSNUtils', :path => '../Development Pods/KSNUtils'
+    pod 'KSNXibLoadedView', :path => '../Development Pods/KSNXibLoadedView'
+    # Changed pods
+    pod 'AFMInfoBanner', :path => '../Development Pods/AFMInfoBanner'
+    
+    # Public pods
+    
+end
 
 target 'KSNTwitterFeed_Example' do
-  pod 'KSNTwitterFeed', :path => '../'
-
-  target 'KSNTwitterFeed_Tests' do
-    inherit! :search_paths
-
-    pod 'Kiwi'
-  end
+    shared_pods
+    pod 'KSNTwitterFeed', :path => '../'
+    
+    target 'KSNTwitterFeed_Tests' do
+        inherit! :search_paths
+        
+        pod 'Kiwi'
+    end
 end
+
+post_install do |installer|
+    
+    FileUtils.cp_r('./Pods/Target Support Files/Pods-KSNTwitterFeed_Example/Pods-KSNTwitterFeed_Example-acknowledgements.plist', './Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+    
+#    installer.pods_project.targets.each do |target|
+#        target.build_configurations.each do |config|
+#            config.build_settings['DEBUG_INFORMATION_FORMAT'] = "dwarf-with-dsym"
+#            config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
+#            config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
+#            config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
+#        end
+#    end
+end
+
+
+
+
+

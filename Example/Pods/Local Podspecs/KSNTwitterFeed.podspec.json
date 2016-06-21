@@ -1,0 +1,65 @@
+{
+  "name": "KSNTwitterFeed",
+  "version": "0.1.0",
+  "summary": "Twitter client with offline mode.",
+  "description": "Features list:\nAs a user I can login to Twitter\nAs a user I see my twitter name in the navigation bar\nAs a user I can view my Twitter feed (fail plan: display error)\nAs a user I can refresh my feed using pull-to-refresh (fail plan: display error)\nAs a user I can view my Twitter feed without internet connection\nAs a user I expect that feed will be automatically updated when network connection is available\nAs a user I can tap on system compose button on the right of navigation bar and get to post new tweet screen\nAs a user I can post new tweet (fail plan: display error)",
+  "homepage": "https://github.com/SergeyKovalenko/KSNTwitterFeed",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Sergey Kovalenko": "papuly@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/SergeyKovalenko/KSNTwitterFeed.git",
+    "branch": "master"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "KSNTwitterFeed/Classes/**/*",
+  "public_header_files": "Pod/Classes/**/*.h",
+  "frameworks": [
+    "UIKit",
+    "Foundation"
+  ],
+  "dependencies": {
+    "KSNObservable": [
+
+    ],
+    "KSNErrorHandler": [
+
+    ],
+    "KSNNetworkClient": [
+
+    ],
+    "KSNDataSource": [
+
+    ],
+    "KSNFeed": [
+
+    ],
+    "KSNUtils": [
+
+    ],
+    "AFMInfoBanner": [
+
+    ],
+    "AFNetworking": [
+      "~> 3.0"
+    ],
+    "ReactiveCocoa": [
+      "2.5"
+    ],
+    "Masonry": [
+
+    ],
+    "AsyncDisplayKit": [
+
+    ],
+    "FastEasyMapping": [
+
+    ]
+  }
+}

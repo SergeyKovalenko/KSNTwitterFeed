@@ -1,0 +1,6 @@
+framework module KSNUtils {
+  umbrella header "KSNUtils-umbrella.h"
+
+  export *
+  module * { export * }
+}

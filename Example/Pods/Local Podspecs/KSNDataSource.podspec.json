@@ -1,0 +1,33 @@
+{
+  "name": "KSNDataSource",
+  "version": "1.1",
+  "summary": "Different data sources.",
+  "description": "Different data sources. Can be used with table view",
+  "homepage": "https://bitbucket.org/atomicip/ksndatasource/overview",
+  "license": "MIT",
+  "authors": {
+    "Sergey Kovalenko": "papuly@gmail.com"
+  },
+  "source": {
+    "git": "https://bitbucket.org/atomicip/ksndatasource/overview.git",
+    "branch": "master"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "KSNDataSource": [
+      "Pod/Assets/*.png"
+    ]
+  },
+  "dependencies": {
+    "KSNUtils": [
+
+    ],
+    "KSNObservable": [
+
+    ]
+  }
+}

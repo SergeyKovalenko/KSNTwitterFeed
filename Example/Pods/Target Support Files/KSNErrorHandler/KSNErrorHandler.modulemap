@@ -1,0 +1,6 @@
+framework module KSNErrorHandler {
+  umbrella header "KSNErrorHandler-umbrella.h"
+
+  export *
+  module * { export * }
+}

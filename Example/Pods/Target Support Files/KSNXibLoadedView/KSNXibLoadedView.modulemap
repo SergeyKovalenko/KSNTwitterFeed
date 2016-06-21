@@ -1,0 +1,6 @@
+framework module KSNXibLoadedView {
+  umbrella header "KSNXibLoadedView-umbrella.h"
+
+  export *
+  module * { export * }
+}

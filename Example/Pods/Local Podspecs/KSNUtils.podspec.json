@@ -1,0 +1,26 @@
+{
+  "name": "KSNUtils",
+  "version": "1.6",
+  "summary": "KSNUtils set.",
+  "description": "A set of different utility functions",
+  "homepage": "https://bitbucket.org/atomicip/ksnutils",
+  "license": "MIT",
+  "authors": {
+    "Sergey Kovalenko": "papuly@gmail.com"
+  },
+  "source": {
+    "git": "https://bitbucket.org/atomicip/ksnutils.git",
+    "branch": "master"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "KSNUtils": [
+      "Pod/Assets/*.png"
+    ]
+  },
+  "public_header_files": "Pod/Classes/**/*.h"
+}
