@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'KSNTwitterFeed_Example' do
+  pod 'KSNTwitterFeed', :path => '../'
+
+  target 'KSNTwitterFeed_Tests' do
+    inherit! :search_paths
+
+    pod 'Kiwi'
+  end
+end
