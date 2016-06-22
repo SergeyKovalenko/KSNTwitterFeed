@@ -1,0 +1,10 @@
+/****************************************************************************/
+/* Localization file */
+
+
+"Unknown error occurred" = "Unknown error occurred";
+"Active twitter account has been removed from iOS settings" = "Active twitter account has been removed from iOS settings";
+"Select twitter account to login" = "Select twitter account to login";
+"Access denied for Account Store with type ACAccountTypeIdentifierTwitter, please grant access in Setting->Twitter " = "Access denied for Account Store with type ACAccountTypeIdentifierTwitter, please grant access in Setting->Twitter ";
+"Cancel" = "Cancel";
+"There is no rootViewController for [UIApplication sharedApplication].delegate.window or window is not visible yet" = "There is no rootViewController for [UIApplication sharedApplication].delegate.window or window is not visible yet";

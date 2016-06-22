@@ -1,6 +1,6 @@
 //
 // Created by Sergey Kovalenko on 10/31/14.
-// Copyright (c) 2014 Windmill. All rights reserved.
+// Copyright (c) 2014. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

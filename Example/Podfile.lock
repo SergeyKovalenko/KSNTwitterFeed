@@ -23,7 +23,16 @@ PODS:
   - AsyncDisplayKit/PINRemoteImage (1.9.80):
     - AsyncDisplayKit/Core
     - PINRemoteImage/iOS (>= 3.0.0-beta.2)
+  - CocoaLumberjack (2.3.0):
+    - CocoaLumberjack/Default (= 2.3.0)
+    - CocoaLumberjack/Extensions (= 2.3.0)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.3.0):
+    - CocoaLumberjack/Default
   - FastEasyMapping (1.0.2)
+  - JRSwizzle (1.0)
   - Kiwi (2.4.0)
   - KSNDataSource (1.1):
     - KSNObservable
@@ -73,6 +82,8 @@ PODS:
 
 DEPENDENCIES:
   - AFMInfoBanner (from `../Development Pods/AFMInfoBanner`)
+  - CocoaLumberjack
+  - JRSwizzle
   - Kiwi
   - KSNDataSource (from `../Development Pods/KSNDataSource`)
   - KSNErrorHandler (from `../Development Pods/KSNErrorHandler`)
@@ -107,7 +118,9 @@ SPEC CHECKSUMS:
   AFMInfoBanner: 0bf0162ae383fa6ccac42d7f7800e0f76c5cd760
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AsyncDisplayKit: ab57b10cd058797015c77be10407f3dc13027c85
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   FastEasyMapping: 77d566a817ca73304af3e7fbed130850238f1cb4
+  JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   KSNDataSource: bbf6e3c1ab422f8593da1d91d7802c7941f55971
   KSNErrorHandler: a83e841024abbb22b9c4cc09463781c773cbad90
@@ -122,6 +135,6 @@ SPEC CHECKSUMS:
   PINRemoteImage: 197554c5ba57a6ae90f5db441651180039fc9062
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-PODFILE CHECKSUM: 51acfd7d17a2dc73c3a73d8898dc1806df61fb75
+PODFILE CHECKSUM: dd2228c851dd4ca3f551b21d3db21a66bf6bc6e3
 
 COCOAPODS: 1.0.1

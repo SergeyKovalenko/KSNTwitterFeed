@@ -1,0 +1,9 @@
+/****************************************************************************/
+/* Localization file */
+
+
+"common.applicationNetworkErrorHandler.title" = "common.applicationNetworkErrorHandler.title";
+"common.applicationNetworkErrorHandler.message" = "common.applicationNetworkErrorHandler.message";
+"common.applicationDefaultErrorHandler.title" = "common.applicationDefaultErrorHandler.title";
+"%@\n[%@, %d]" = "%@\n[%@, %d]";
+"Logout" = "Logout";

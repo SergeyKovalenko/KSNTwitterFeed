@@ -7,22 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BA614A21D1A73F2008C2713 /* KSNLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BA614A11D1A73F2008C2713 /* KSNLoginViewController.xib */; };
+		2BA614A51D1A7932008C2713 /* KSNTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA614A41D1A7932008C2713 /* KSNTransitionViewController.m */; };
+		2BE8AA5E1D1AF93D00F8B174 /* UIAlertController+WMLShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8AA5C1D1AF93D00F8B174 /* UIAlertController+WMLShortcut.m */; };
+		2BE8AA661D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8AA631D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.m */; };
+		2BE8AA671D1AF9CB00F8B174 /* NSObject+KSNModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8AA651D1AF9CB00F8B174 /* NSObject+KSNModal.m */; };
+		2BE8AA6F1D1B2A8100F8B174 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCD52DA1D19E25200E119A7 /* Launch Screen.storyboard */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* KSNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* KSNAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* KSNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* KSNViewController.m */; };
+		6003F5A7195388D20070C39A /* KSNLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* KSNLoginViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		90DAC9C0005EC5EA5C68158D /* Pods_KSNTwitterFeed_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EEF18F9BF03BA81B28EB73 /* Pods_KSNTwitterFeed_Tests.framework */; };
 		997B91F8FEB1EF38B5F58E84 /* Pods_KSNTwitterFeed_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F40843802E5EA62AF9FCA1 /* Pods_KSNTwitterFeed_Example.framework */; };
+		ED86F4213A48078B7642E95D /* KSNRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86FF491233DBCB36DBEE57 /* KSNRootViewController.m */; };
+		ED86F571412A27AC7F9C23E0 /* KSNTwitterLoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86F043AB3777C30AB3E638 /* KSNTwitterLoginViewModel.m */; };
+		ED86FA9B6DD206E47836E36F /* KSNTwitterFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86F532D1302FC0DA150448 /* KSNTwitterFeedViewController.m */; };
+		ED86FBC51224DDBB746EB4F2 /* KSNTwitterFeedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86FD2973301490D5FD0945 /* KSNTwitterFeedViewModel.m */; };
+		ED86FBCB6C51D4D0DDDEE285 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED86F936BC66AF20F813B513 /* Localizable.strings */; };
+		ED86FC252049EE8620B7FBE0 /* KSNRootViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86F5BEAF7DFA099E843386 /* KSNRootViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +48,18 @@
 
 /* Begin PBXFileReference section */
 		00DB193A9826AE481A779810 /* Pods-KSNTwitterFeed_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSNTwitterFeed_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KSNTwitterFeed_Tests/Pods-KSNTwitterFeed_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		6003F58A195388D20070C39A /* KSNTwitterFeed_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSNTwitterFeed_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BA614A11D1A73F2008C2713 /* KSNLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KSNLoginViewController.xib; sourceTree = "<group>"; };
+		2BA614A31D1A7932008C2713 /* KSNTransitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNTransitionViewController.h; sourceTree = "<group>"; };
+		2BA614A41D1A7932008C2713 /* KSNTransitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNTransitionViewController.m; sourceTree = "<group>"; };
+		2BCD52DA1D19E25200E119A7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		2BE8AA5C1D1AF93D00F8B174 /* UIAlertController+WMLShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+WMLShortcut.m"; sourceTree = "<group>"; };
+		2BE8AA5D1D1AF93D00F8B174 /* UIAlertController+WMLShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+WMLShortcut.h"; sourceTree = "<group>"; };
+		2BE8AA621D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+NTFQueueAdditions.h"; sourceTree = "<group>"; };
+		2BE8AA631D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+NTFQueueAdditions.m"; sourceTree = "<group>"; };
+		2BE8AA641D1AF9CB00F8B174 /* NSObject+KSNModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KSNModal.h"; sourceTree = "<group>"; };
+		2BE8AA651D1AF9CB00F8B174 /* NSObject+KSNModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KSNModal.m"; sourceTree = "<group>"; };
+		2BE8AA681D1AFC5200F8B174 /* KSNLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSNLogging.h; sourceTree = "<group>"; };
+		6003F58A195388D20070C39A /* twitterfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twitterfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -47,8 +69,8 @@
 		6003F59B195388D20070C39A /* KSNTwitterFeed-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KSNTwitterFeed-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* KSNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSNAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* KSNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSNAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* KSNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSNViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* KSNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSNViewController.m; sourceTree = "<group>"; };
+		6003F5A5195388D20070C39A /* KSNLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSNLoginViewController.h; sourceTree = "<group>"; };
+		6003F5A6195388D20070C39A /* KSNLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSNLoginViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* KSNTwitterFeed_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSNTwitterFeed_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -56,7 +78,6 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8F2CD42DF4C9558BEEF15D8D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		95EEF18F9BF03BA81B28EB73 /* Pods_KSNTwitterFeed_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSNTwitterFeed_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A34D4C35EF1A1EC402EB67 /* Pods-KSNTwitterFeed_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSNTwitterFeed_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-KSNTwitterFeed_Example/Pods-KSNTwitterFeed_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +86,17 @@
 		CFEC22326AD7330421A898E6 /* Pods-KSNTwitterFeed_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSNTwitterFeed_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KSNTwitterFeed_Example/Pods-KSNTwitterFeed_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D7F40843802E5EA62AF9FCA1 /* Pods_KSNTwitterFeed_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSNTwitterFeed_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DB23DEF5D266A7C9A10D4F /* Pods-KSNTwitterFeed_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSNTwitterFeed_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KSNTwitterFeed_Tests/Pods-KSNTwitterFeed_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED86F043AB3777C30AB3E638 /* KSNTwitterLoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNTwitterLoginViewModel.m; sourceTree = "<group>"; };
+		ED86F17DCF7B25E6AA394BAF /* KSNTwitterLoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNTwitterLoginViewModel.h; sourceTree = "<group>"; };
+		ED86F40388FE0EFA5A7987CF /* KSNTwitterFeedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNTwitterFeedViewModel.h; sourceTree = "<group>"; };
+		ED86F532D1302FC0DA150448 /* KSNTwitterFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNTwitterFeedViewController.m; sourceTree = "<group>"; };
+		ED86F581C509BDF00826AB5A /* KSNRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNRootViewController.h; sourceTree = "<group>"; };
+		ED86F5BEAF7DFA099E843386 /* KSNRootViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNRootViewModel.m; sourceTree = "<group>"; };
+		ED86F936BC66AF20F813B513 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		ED86FD2973301490D5FD0945 /* KSNTwitterFeedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNTwitterFeedViewModel.m; sourceTree = "<group>"; };
+		ED86FD70A9800175B6FC53BE /* KSNTwitterFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNTwitterFeedViewController.h; sourceTree = "<group>"; };
+		ED86FE2EF2D6A5650DC3CE04 /* KSNRootViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNRootViewModel.h; sourceTree = "<group>"; };
+		ED86FF491233DBCB36DBEE57 /* KSNRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNRootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +125,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BE8AA5F1D1AF94100F8B174 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2BE8AA691D1AFC6300F8B174 /* Utils */,
+				2BE8AA611D1AF97900F8B174 /* Categories */,
+				2BE8AA601D1AF96200F8B174 /* View Controllers */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		2BE8AA601D1AF96200F8B174 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2BA614A31D1A7932008C2713 /* KSNTransitionViewController.h */,
+				2BA614A41D1A7932008C2713 /* KSNTransitionViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		2BE8AA611D1AF97900F8B174 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2BE8AA621D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.h */,
+				2BE8AA631D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.m */,
+				2BE8AA641D1AF9CB00F8B174 /* NSObject+KSNModal.h */,
+				2BE8AA651D1AF9CB00F8B174 /* NSObject+KSNModal.m */,
+				2BE8AA5C1D1AF93D00F8B174 /* UIAlertController+WMLShortcut.m */,
+				2BE8AA5D1D1AF93D00F8B174 /* UIAlertController+WMLShortcut.h */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		2BE8AA691D1AFC6300F8B174 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2BE8AA681D1AFC5200F8B174 /* KSNLogging.h */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		2BE8AA6C1D1B2A1100F8B174 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ED86F17DCF7B25E6AA394BAF /* KSNTwitterLoginViewModel.h */,
+				ED86F043AB3777C30AB3E638 /* KSNTwitterLoginViewModel.m */,
+				6003F5A5195388D20070C39A /* KSNLoginViewController.h */,
+				6003F5A6195388D20070C39A /* KSNLoginViewController.m */,
+				2BA614A11D1A73F2008C2713 /* KSNLoginViewController.xib */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		2BE8AA6D1D1B2A2200F8B174 /* Root Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ED86F581C509BDF00826AB5A /* KSNRootViewController.h */,
+				ED86FF491233DBCB36DBEE57 /* KSNRootViewController.m */,
+				ED86FE2EF2D6A5650DC3CE04 /* KSNRootViewModel.h */,
+				ED86F5BEAF7DFA099E843386 /* KSNRootViewModel.m */,
+			);
+			name = "Root Controller";
+			sourceTree = "<group>";
+		};
+		2BE8AA6E1D1B2A4B00F8B174 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				ED86FD70A9800175B6FC53BE /* KSNTwitterFeedViewController.h */,
+				ED86F532D1302FC0DA150448 /* KSNTwitterFeedViewController.m */,
+				ED86F40388FE0EFA5A7987CF /* KSNTwitterFeedViewModel.h */,
+				ED86FD2973301490D5FD0945 /* KSNTwitterFeedViewModel.m */,
+			);
+			name = Feed;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +214,7 @@
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* KSNTwitterFeed_Example.app */,
+				6003F58A195388D20070C39A /* twitterfall.app */,
 				6003F5AE195388D20070C39A /* KSNTwitterFeed_Tests.xctest */,
 			);
 			name = Products;
@@ -130,11 +236,14 @@
 		6003F593195388D20070C39A /* Example for KSNTwitterFeed */ = {
 			isa = PBXGroup;
 			children = (
+				2BE8AA5F1D1AF94100F8B174 /* Common */,
 				6003F59C195388D20070C39A /* KSNAppDelegate.h */,
 				6003F59D195388D20070C39A /* KSNAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* KSNViewController.h */,
-				6003F5A6195388D20070C39A /* KSNViewController.m */,
+				2BE8AA6C1D1B2A1100F8B174 /* Login */,
+				2BE8AA6D1D1B2A2200F8B174 /* Root Controller */,
+				2BE8AA6E1D1B2A4B00F8B174 /* Feed */,
+				2BCD52DA1D19E25200E119A7 /* Launch Screen.storyboard */,
+				ED86F936BC66AF20F813B513 /* Localizable.strings */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -213,7 +322,7 @@
 			);
 			name = KSNTwitterFeed_Example;
 			productName = KSNTwitterFeed;
-			productReference = 6003F58A195388D20070C39A /* KSNTwitterFeed_Example.app */;
+			productReference = 6003F58A195388D20070C39A /* twitterfall.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6003F5AD195388D20070C39A /* KSNTwitterFeed_Tests */ = {
@@ -276,9 +385,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				2BA614A21D1A73F2008C2713 /* KSNLoginViewController.xib in Resources */,
+				2BE8AA6F1D1B2A8100F8B174 /* Launch Screen.storyboard in Resources */,
+				ED86FBCB6C51D4D0DDDEE285 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,8 +502,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* KSNAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* KSNViewController.m in Sources */,
+				2BE8AA5E1D1AF93D00F8B174 /* UIAlertController+WMLShortcut.m in Sources */,
+				2BA614A51D1A7932008C2713 /* KSNTransitionViewController.m in Sources */,
+				6003F5A7195388D20070C39A /* KSNLoginViewController.m in Sources */,
+				2BE8AA671D1AF9CB00F8B174 /* NSObject+KSNModal.m in Sources */,
+				2BE8AA661D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				ED86F4213A48078B7642E95D /* KSNRootViewController.m in Sources */,
+				ED86FC252049EE8620B7FBE0 /* KSNRootViewModel.m in Sources */,
+				ED86F571412A27AC7F9C23E0 /* KSNTwitterLoginViewModel.m in Sources */,
+				ED86FBC51224DDBB746EB4F2 /* KSNTwitterFeedViewModel.m in Sources */,
+				ED86FA9B6DD206E47836E36F /* KSNTwitterFeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +570,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -490,7 +610,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -518,7 +638,7 @@
 				INFOPLIST_FILE = "KSNTwitterFeed/KSNTwitterFeed-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = twitterfall;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -534,7 +654,7 @@
 				INFOPLIST_FILE = "KSNTwitterFeed/KSNTwitterFeed-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = twitterfall;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

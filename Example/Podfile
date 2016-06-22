@@ -18,7 +18,8 @@ def shared_pods
     pod 'AFMInfoBanner', :path => '../Development Pods/AFMInfoBanner'
     
     # Public pods
-    
+    pod 'JRSwizzle' # I'm sorry mama. I'm trying to avoid method swizzling as much as I can. (One place where I can't avoid this is NSObject+KSNModal)
+    pod 'CocoaLumberjack'
 end
 
 target 'KSNTwitterFeed_Example' do

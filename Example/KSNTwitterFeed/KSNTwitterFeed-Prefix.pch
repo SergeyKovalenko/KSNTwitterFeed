@@ -11,6 +11,13 @@
 #endif
 
 #ifdef __OBJC__
-    @import UIKit;
-    @import Foundation;
+
+@import UIKit;
+@import Foundation;
+#import "KSNLogging.h"
+#import "NSObject+KSNModal.h"
+#import <KSNUtils/KSNGlobalFunctions.h>
+#import "KSNAppDelegate.h"
+#define APP_DELEGATE ((KSNAppDelegate *)[UIApplication sharedApplication].delegate)
+
 #endif

@@ -1,9 +1,9 @@
 //
 //  KSNNetworkAPI.m
-//  9to5monk
+//  
 //
 //  Created by Sergey Kovalenko on 1/26/16.
-//  Copyright © 2016 Windmill. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 
 #import "KSNNetworkAPI.h"

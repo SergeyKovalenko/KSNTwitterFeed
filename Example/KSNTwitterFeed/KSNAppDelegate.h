@@ -7,9 +7,11 @@
 //
 
 @import UIKit;
+@class KSNErrorHandler;
 
 @interface KSNAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, strong, readonly) KSNErrorHandler *errorHandler;
 @end

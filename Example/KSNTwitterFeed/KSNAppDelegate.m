@@ -6,41 +6,73 @@
 //  Copyright (c) 2016 Sergey Kovalenko. All rights reserved.
 //
 
+#import <KSNTwitterFeed/KSNTwitterSocialAdapter.h>
+#import <KSNErrorHandler/KSNErrorHandler.h>
 #import "KSNAppDelegate.h"
+#import "UIAlertController+WMLShortcut.h"
+#import "KSNRootViewController.h"
+#import "KSNRootViewModel.h"
+
+@interface KSNAppDelegate ()
+
+@property (nonatomic, strong) KSNTwitterSocialAdapter *twitterSocialAdapter;
+@property (nonatomic, strong, readwrite) KSNErrorHandler *errorHandler;
+@end
 
 @implementation KSNAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self installDefaultErrorHandlers];
+
+    self.twitterSocialAdapter = [[KSNTwitterSocialAdapter alloc] init];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = [self createRootControllerWithTwitterSocialAdapter:self.twitterSocialAdapter];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+- (UIViewController *)createRootControllerWithTwitterSocialAdapter:(KSNTwitterSocialAdapter *)twitterSocialAdapter
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    KSNRootViewModel *viewModel = [[KSNRootViewModel alloc] initWithTwitterSocialAdapter:twitterSocialAdapter];
+    KSNRootViewController *rootViewController = [[KSNRootViewController alloc] initWithViewModel:viewModel];
+    return rootViewController;
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (void)installDefaultErrorHandlers
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
+    self.errorHandler = [[KSNErrorHandler alloc] init];
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
+    // Network error handler
+    self.errorHandler.networkErrorHandler = ^(NSError *error) {
+        NSString *title = NSLocalizedString(@"common.applicationNetworkErrorHandler.title", nil);
+        NSString *message = NSLocalizedString(@"common.applicationNetworkErrorHandler.message", nil);
+        [UIAlertController ksn_showWithTitle:title message:message];
+        return YES;
+    };
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
+    self.errorHandler.defaultErrorHandler = ^(NSError *error) {
+        // Send errors to Crashlytics
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
+        NSString *title = NSLocalizedString(@"common.applicationDefaultErrorHandler.title", nil);
+
+        NSString *localizedDescription = [error localizedDescription];
+        if ([localizedDescription length] == 0)
+        {
+            localizedDescription = @"";
+        }
+#ifdef DEBUG
+        NSString *messageFormat = NSLocalizedString(@"%@\n[%@, %d]", nil);
+        NSString *message = [NSString stringWithFormat:messageFormat, localizedDescription, error.domain, error.code];
+#else
+        NSString * message = localizedDescription;
+#endif
+        [UIAlertController ksn_showWithTitle:title message:message];
+        LOG_ERROR(@"Default Error Handler: %@", error);
+        return YES;
+    };
 }
 
 @end

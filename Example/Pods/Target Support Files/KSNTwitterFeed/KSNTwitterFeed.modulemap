@@ -1,0 +1,6 @@
+framework module KSNTwitterFeed {
+  umbrella header "KSNTwitterFeed-umbrella.h"
+
+  export *
+  module * { export * }
+}
