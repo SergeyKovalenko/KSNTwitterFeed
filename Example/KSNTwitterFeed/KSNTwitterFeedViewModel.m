@@ -6,6 +6,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <KSNTwitterFeed/KSNSocialAdapter.h>
 #import <KSNTwitterFeed/KSNTwitterSocialAdapter.h>
+#import <KSNTwitterFeed/KSNTwitterAPI.h>
 #import "KSNTwitterFeedViewModel.h"
 
 @import Accounts;
@@ -14,6 +15,7 @@
 
 @property (nonatomic, readwrite) RACCommand *logoutCommand;
 @property (nonatomic, readwrite) NSString *username;
+@property (nonatomic, strong) KSNTwitterAPI *api;
 @end
 
 @implementation KSNTwitterFeedViewModel
@@ -35,6 +37,15 @@
                                                    endSessionSignal]] map:^id(id value) {
             return [twitterSocialAdapter activeAccount].username;
         }] startWith:[twitterSocialAdapter activeAccount].username];
+
+        self.api = [[KSNTwitterAPI alloc] initWithSocialAdapter:twitterSocialAdapter];
+        [[self.api userTimelineWithDeserializer:nil] subscribeNext:^(id x) {
+             NSLog(@"%@", x);
+         }                                                   error:^(NSError *error) {
+             NSLog(@"%@", error);
+         }                                               completed:^{
+             NSLog(@"complete");
+         }];
     }
 
     return self;

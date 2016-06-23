@@ -8,7 +8,7 @@
 
 #import <KSNTwitterFeed/KSNTwitterSocialAdapter.h>
 #import <KSNErrorHandler/KSNErrorHandler.h>
-#import "KSNAppDelegate.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import "UIAlertController+WMLShortcut.h"
 #import "KSNRootViewController.h"
 #import "KSNRootViewModel.h"
@@ -25,12 +25,39 @@
 {
     // Override point for customization after application launch.
     [self installDefaultErrorHandlers];
+    [self setupPersistentStore];
 
     self.twitterSocialAdapter = [[KSNTwitterSocialAdapter alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [self createRootControllerWithTwitterSocialAdapter:self.twitterSocialAdapter];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)setupPersistentStore
+{
+    NSURL *storeURL = [NSPersistentStore MR_defaultLocalStoreUrl];
+    [MagicalRecord setupCoreDataStackWithStoreAtURL:storeURL];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    // No need to unsubscribe
+    [center addObserverForName:KSNTwitterSocialAdapterDidEndUserSessionNotification
+                        object:self.twitterSocialAdapter
+                         queue:[NSOperationQueue mainQueue]
+                    usingBlock:^(NSNotification *__nonnull note) {
+                        // Remove all user data
+                        NSURL *dbURL = storeURL;
+                        [MagicalRecord cleanUp];
+                        NSFileManager *fileManager = [NSFileManager defaultManager];
+                        NSError *cleanUpError;
+                        // Let's remove whole folder since multiple files can be created
+                        NSURL *url = [dbURL URLByDeletingLastPathComponent];
+                        if (![fileManager removeItemAtURL:url error:&cleanUpError])
+                        {
+                            LOG_ERROR(@"Clean up DB Error: %@", cleanUpError);
+                        }
+                        // Setup Core Data Stack just to be ready for the next user session
+                        [MagicalRecord setupCoreDataStackWithStoreAtURL:storeURL];
+                    }];
 }
 
 - (UIViewController *)createRootControllerWithTwitterSocialAdapter:(KSNTwitterSocialAdapter *)twitterSocialAdapter
@@ -73,6 +100,11 @@
         LOG_ERROR(@"Default Error Handler: %@", error);
         return YES;
     };
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    [MagicalRecord cleanUp];
 }
 
 @end

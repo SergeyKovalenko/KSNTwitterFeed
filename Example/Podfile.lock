@@ -66,6 +66,9 @@ PODS:
   - KSNUtils (1.6)
   - KSNXibLoadedView (1.4):
     - Masonry
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
   - Masonry (1.0.1)
   - PINCache (2.2.2)
   - PINRemoteImage/Core (3.0.0-beta.2):
@@ -93,6 +96,7 @@ DEPENDENCIES:
   - KSNTwitterFeed (from `../`)
   - KSNUtils (from `../Development Pods/KSNUtils`)
   - KSNXibLoadedView (from `../Development Pods/KSNXibLoadedView`)
+  - MagicalRecord
 
 EXTERNAL SOURCES:
   AFMInfoBanner:
@@ -130,11 +134,12 @@ SPEC CHECKSUMS:
   KSNTwitterFeed: 4316af37e4d771462432e6849d7f4b7d9a797a71
   KSNUtils: ece85ea31aff17566156ff4b8a13d2f9fd93b815
   KSNXibLoadedView: e5c85c18c948381ead3817c7c8695f1d71e0c022
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
   PINRemoteImage: 197554c5ba57a6ae90f5db441651180039fc9062
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-PODFILE CHECKSUM: dd2228c851dd4ca3f551b21d3db21a66bf6bc6e3
+PODFILE CHECKSUM: 5c7f1017ceb627f95d6621857cac946e42942a8a
 
 COCOAPODS: 1.0.1
