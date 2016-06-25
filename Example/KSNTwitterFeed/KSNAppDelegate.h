@@ -8,6 +8,7 @@
 
 @import UIKit;
 @class KSNErrorHandler;
+@class KSNTwitterAPI;
 
 @interface KSNAppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -12,14 +12,22 @@
 #import "UIAlertController+WMLShortcut.h"
 #import "KSNRootViewController.h"
 #import "KSNRootViewModel.h"
+#import <KSNTwitterFeed/KSNTwitterAPI.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface KSNAppDelegate ()
+@interface KSNAppDelegate () <KSNTwitterResponseDeserializer>
 
 @property (nonatomic, strong) KSNTwitterSocialAdapter *twitterSocialAdapter;
 @property (nonatomic, strong, readwrite) KSNErrorHandler *errorHandler;
+@property (nonatomic, strong) KSNTwitterAPI *api;
 @end
 
 @implementation KSNAppDelegate
+
+- (nullable id)parseJSON:(id)json error:(NSError * _Nullable *)pError;
+{
+    return json;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,6 +36,14 @@
     [self setupPersistentStore];
 
     self.twitterSocialAdapter = [[KSNTwitterSocialAdapter alloc] init];
+    self.api = [[KSNTwitterAPI alloc] initWithSocialAdapter:self.twitterSocialAdapter];
+    [[self.api userTimeLineWithDeserializer:self sinceTweetID:nil maxTweetID:nil count:nil] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    } error:^(NSError *error) {
+        NSLog(@"error %@",error);
+    } completed:^{
+        NSLog(@"com");
+    }];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [self createRootControllerWithTwitterSocialAdapter:self.twitterSocialAdapter];
     [self.window makeKeyAndVisible];

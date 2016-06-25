@@ -37,15 +37,6 @@
                                                    endSessionSignal]] map:^id(id value) {
             return [twitterSocialAdapter activeAccount].username;
         }] startWith:[twitterSocialAdapter activeAccount].username];
-
-        self.api = [[KSNTwitterAPI alloc] initWithSocialAdapter:twitterSocialAdapter];
-        [[self.api userTimelineWithDeserializer:nil] subscribeNext:^(id x) {
-             NSLog(@"%@", x);
-         }                                                   error:^(NSError *error) {
-             NSLog(@"%@", error);
-         }                                               completed:^{
-             NSLog(@"complete");
-         }];
     }
 
     return self;

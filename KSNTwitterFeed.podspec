@@ -29,17 +29,20 @@
     s.source           = { :git => 'https://github.com/SergeyKovalenko/KSNTwitterFeed.git', :branch => 'master' }
 
     s.ios.deployment_target = '8.0'
-    s.source_files = 'KSNTwitterFeed/Classes/**/*'
-    s.public_header_files = 'Pod/Classes/**/*.h'
+    s.source_files = 'KSNTwitterFeed/Classes/**/*.{m,h}'
+    s.resource_bundles = {
+      'KSNTwitterFeedBundle' => ['KSNTwitterFeed/Assets/*.*']
+    }
+    # s.public_header_files = 'Pod/Classes/**/*.h'
     s.frameworks = 'UIKit', 'Foundation'
 
     # Private pods
 
-    s.dependency 'KSNObservable'
-    s.dependency 'KSNErrorHandler'
-    s.dependency 'KSNNetworkClient'
-    s.dependency 'KSNDataSource'
-    s.dependency 'KSNFeed'
+    # s.dependency 'KSNObservable'
+    # s.dependency 'KSNErrorHandler'
+    # s.dependency 'KSNNetworkClient'
+    # s.dependency 'KSNDataSource'
+    # s.dependency 'KSNFeed'
     s.dependency 'KSNUtils'
 
     # Changed pods
@@ -49,7 +52,7 @@
 
     s.dependency 'AFNetworking', '~> 3.0'
     s.dependency 'ReactiveCocoa', '2.5'
-    s.dependency 'Masonry'
-    s.dependency 'AsyncDisplayKit'
+    # s.dependency 'Masonry'
+    # s.dependency 'AsyncDisplayKit'
     s.dependency 'FastEasyMapping'
     end

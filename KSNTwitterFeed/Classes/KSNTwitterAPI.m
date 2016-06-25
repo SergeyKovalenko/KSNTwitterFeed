@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "KSNTwitterAPI.h"
 #import "KSNTwitterSocialAdapter.h"
+#import "AFNetworking.h"
 
 @import Social;
 @import Accounts;
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) KSNTwitterSocialAdapter *socialAdapter;
 @property (nonatomic, strong) NSURL *baseURL;
 @property (nonatomic, strong) RACScheduler *parsingScheduler;
+@property (nonatomic, strong) AFJSONResponseSerializer *responceSerializer;
 @end
 
 @implementation KSNTwitterAPI
@@ -31,6 +33,7 @@
         _socialAdapter = socialAdapter;
         _baseURL = [NSURL URLWithString:@"https://api.twitter.com/1.1/"];
         _parsingScheduler = [RACScheduler schedulerWithPriority:RACSchedulerPriorityDefault name:@"com.KSNTwitterAPI.response.parsingScheduler"];
+        _responceSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:0];
     }
 
     return self;
@@ -62,7 +65,9 @@
     return request;
 }
 
-- (RACSignal *)performRequestWithHandler:(SLRequest *)request deserializer:(id <KSNTwitterResponseDeserializer>)deserializer reloadForEachSubscriber:(BOOL)reloadForEachSubscriber
+- (RACSignal *)performRequestWithHandler:(SLRequest *)request
+                            deserializer:(id <KSNTwitterResponseDeserializer>)deserializer
+                 reloadForEachSubscriber:(BOOL)reloadForEachSubscriber
 {
     @weakify(self);
     RACSignal *networkRequest = [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
@@ -80,7 +85,7 @@
                 else
                 {
                     @strongify(self);
-                    [[self parseModel:deserializer fromData:responseData] subscribe:subscriber];
+                    [[self parseModel:deserializer urlResponse:urlResponse fromData:responseData] subscribe:subscriber];
                 }
             }
         }];
@@ -98,57 +103,52 @@
     }
 }
 
-- (RACSignal *)parseModel:(id <KSNTwitterResponseDeserializer>)deserializer fromData:(NSData *)responseData
+- (RACSignal *)parseModel:(id <KSNTwitterResponseDeserializer>)deserializer
+              urlResponse:(NSHTTPURLResponse *)urlResponse
+                 fromData:(NSData *)responseData
 {
+    @weakify(self);
     return [RACSignal startEagerlyWithScheduler:self.parsingScheduler block:^(id <RACSubscriber> subscriber) {
-
-        id responseObject = nil;
+        
         NSError *serializationError = nil;
-        // Workaround for behavior of Rails to return a single space for `head :ok` (a workaround for a bug in Safari), which is not interpreted as valid input by NSJSONSerialization.
-        // See https://github.com/rails/rails/issues/1742
-        BOOL isSpace = [responseData isEqualToData:[NSData dataWithBytes:" " length:1]];
-        if (responseData.length > 0 && !isSpace)
+        id responseObject = [self.responceSerializer responseObjectForResponse:urlResponse data:responseData error:&serializationError];
+        if (serializationError)
         {
-            responseObject = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&serializationError];
-            if (responseObject)
+            [subscriber sendError:serializationError];
+        }
+        else
+        {
+            id result = [deserializer parseJSON:responseObject error:&serializationError];
+            if (result)
             {
-                id result = [deserializer parseJSON:responseObject error:&serializationError];
-                if (result)
-                {
-                    [subscriber sendNext:result];
-                    [subscriber sendCompleted];
-                }
-                else
-                {
-                    [subscriber sendError:serializationError];
-                }
+                [subscriber sendNext:result];
+                [subscriber sendCompleted];
             }
             else
             {
                 [subscriber sendError:serializationError];
             }
-        }
-        else
-        {
-            [subscriber sendNext:nil];
-            [subscriber sendCompleted];
+            
         }
     }];
 }
 
-- (RACSignal *)userTimelineWithDeserializer:(id <KSNTwitterResponseDeserializer>)deserializer
-{
-    ACAccount *account = self.socialAdapter.activeAccount;
-    if (account)
-    {
-        NSURL *URL = [self buildURLWithPath:@"statuses/user_timeline.json"];
-        SLRequest *request = [self requestWithMethod:SLRequestMethodGET URL:URL parameters:nil];
-        return [self performRequestWithHandler:request deserializer:nil reloadForEachSubscriber:NO];
-    }
-    else
-    {
-        return [RACSignal error:nil];
-    }
-}
+@end
 
+@implementation KSNTwitterAPI (UserTimeLine)
+
+- (RACSignal *)userTimeLineWithDeserializer:(id <KSNTwitterResponseDeserializer>)deserializer
+                               sinceTweetID:(NSNumber *)sinceID
+                                 maxTweetID:(NSNumber *)maxTweetID
+                                      count:(NSNumber *)count
+{
+    NSURL *URL = [self buildURLWithPath:@"statuses/user_timeline.json"];
+    SLRequest *request = [self requestWithMethod:SLRequestMethodGET
+                                             URL:URL
+                                      parameters:@{@"since_id" : sinceID ?: [NSNull null],
+                                                   @"max_id"   : maxTweetID ?: [NSNull null],
+                                                   @"count"    : count ?: [NSNull null]}];
+
+    return [self performRequestWithHandler:request deserializer:deserializer reloadForEachSubscriber:NO];
+}
 @end
