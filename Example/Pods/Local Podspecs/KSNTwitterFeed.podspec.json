@@ -18,28 +18,17 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "KSNTwitterFeed/Classes/**/*",
-  "public_header_files": "Pod/Classes/**/*.h",
+  "source_files": "KSNTwitterFeed/Classes/**/*.{m,h}",
+  "resource_bundles": {
+    "KSNTwitterFeedBundle": [
+      "KSNTwitterFeed/Assets/*.*"
+    ]
+  },
   "frameworks": [
     "UIKit",
     "Foundation"
   ],
   "dependencies": {
-    "KSNObservable": [
-
-    ],
-    "KSNErrorHandler": [
-
-    ],
-    "KSNNetworkClient": [
-
-    ],
-    "KSNDataSource": [
-
-    ],
-    "KSNFeed": [
-
-    ],
     "KSNUtils": [
 
     ],
@@ -51,12 +40,6 @@
     ],
     "ReactiveCocoa": [
       "2.5"
-    ],
-    "Masonry": [
-
-    ],
-    "AsyncDisplayKit": [
-
     ],
     "FastEasyMapping": [
 

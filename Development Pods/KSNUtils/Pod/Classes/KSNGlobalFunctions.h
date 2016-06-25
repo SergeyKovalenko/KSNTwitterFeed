@@ -31,6 +31,7 @@ FOUNDATION_STATIC_INLINE BOOL KSNObjectEqualToObject(id o1, id o2)
 #define KSN_SYSTEM_VERSION_LESS_THAN(v)                 ([KSN_SystemVersion() compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define KSN_SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([KSN_SystemVersion() compare:v options:NSNumericSearch] != NSOrderedDescending)
 
+#define KSN_REQUIRE_OVERRIDE NSAssert(NO, @"Override %2$@ in %1$@.", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
 
 // Memoize expensive API
 FOUNDATION_STATIC_INLINE NSString * KSN_SystemVersion(void)

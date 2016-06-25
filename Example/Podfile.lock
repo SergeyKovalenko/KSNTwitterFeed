@@ -15,14 +15,6 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AsyncDisplayKit (1.9.80):
-    - AsyncDisplayKit/PINRemoteImage (= 1.9.80)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.9.80)
-  - AsyncDisplayKit/Core (1.9.80):
-    - AsyncDisplayKit/ASDealloc2MainObject
-  - AsyncDisplayKit/PINRemoteImage (1.9.80):
-    - AsyncDisplayKit/Core
-    - PINRemoteImage/iOS (>= 3.0.0-beta.2)
   - CocoaLumberjack (2.3.0):
     - CocoaLumberjack/Default (= 2.3.0)
     - CocoaLumberjack/Extensions (= 2.3.0)
@@ -53,15 +45,8 @@ PODS:
   - KSNTwitterFeed (0.1.0):
     - AFMInfoBanner
     - AFNetworking (~> 3.0)
-    - AsyncDisplayKit
     - FastEasyMapping
-    - KSNDataSource
-    - KSNErrorHandler
-    - KSNFeed
-    - KSNNetworkClient
-    - KSNObservable
     - KSNUtils
-    - Masonry
     - ReactiveCocoa (= 2.5)
   - KSNUtils (1.6)
   - KSNXibLoadedView (1.4):
@@ -70,11 +55,6 @@ PODS:
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
   - Masonry (1.0.1)
-  - PINCache (2.2.2)
-  - PINRemoteImage/Core (3.0.0-beta.2):
-    - PINCache (>= 2.1)
-  - PINRemoteImage/iOS (3.0.0-beta.2):
-    - PINRemoteImage/Core
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -121,7 +101,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFMInfoBanner: 0bf0162ae383fa6ccac42d7f7800e0f76c5cd760
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AsyncDisplayKit: ab57b10cd058797015c77be10407f3dc13027c85
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   FastEasyMapping: 77d566a817ca73304af3e7fbed130850238f1cb4
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
@@ -131,15 +110,13 @@ SPEC CHECKSUMS:
   KSNFeed: c4c3f10e0ccb41185f341a2bf1b6ab491fb1b90c
   KSNNetworkClient: 44ffd8e1411e185aa104d62d4f3d248870c14ec5
   KSNObservable: 728f3aae902035474006fee5de111c949c0f7ffd
-  KSNTwitterFeed: 4316af37e4d771462432e6849d7f4b7d9a797a71
+  KSNTwitterFeed: dd1f747b72aa2f502aeae991ac45f67aed14b3d0
   KSNUtils: ece85ea31aff17566156ff4b8a13d2f9fd93b815
   KSNXibLoadedView: e5c85c18c948381ead3817c7c8695f1d71e0c022
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
-  PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
-  PINRemoteImage: 197554c5ba57a6ae90f5db441651180039fc9062
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-PODFILE CHECKSUM: 5c7f1017ceb627f95d6621857cac946e42942a8a
+PODFILE CHECKSUM: 3a6b4f33082f2f6af607c748f3a298e504d5b0f2
 
 COCOAPODS: 1.0.1

@@ -59,7 +59,8 @@
 		"profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
 		"profile_background_tile": false,
 		"profile_image_url": "http:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_3_normal.png",
-		"profile_image_url_https": "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_3_normal.png",
+		"profile_imag
+ e_url_https": "https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_3_normal.png",
 		"profile_link_color": "0084B4",
 		"profile_sidebar_border_color": "C0DEED",
 		"profile_sidebar_fill_color": "DDEEF6",
@@ -93,7 +94,9 @@
 @end
 
 
-@interface KSNTweet : NSManagedObjectModel <KSNTweet>
+@interface KSNTweet : NSManagedObject <KSNTweet>
 
 + (FEMMapping *)tweetMapping;
++ (NSManagedObjectModel *)managedObjectModel;
+
 @end

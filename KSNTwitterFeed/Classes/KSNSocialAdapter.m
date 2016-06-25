@@ -3,8 +3,8 @@
 //
 
 #import "KSNSocialAdapter.h"
+#import <KSNUtils/KSNGlobalFunctions.h>
 
-#define REQUIRE_OVERRIDE NSAssert(NO, @"Override %2$@ in %1$@.", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
 
 @interface KSNSocialAdapter ()
 
@@ -29,25 +29,25 @@
 
 - (NSString *)socialAdapterName
 {
-    REQUIRE_OVERRIDE;
+    KSN_REQUIRE_OVERRIDE;
     return nil;
 }
 
 - (RACSignal *)startUserSession
 {
-    REQUIRE_OVERRIDE;
+    KSN_REQUIRE_OVERRIDE;
     return nil;
 }
 
 - (RACSignal *)endUserSession
 {
-    REQUIRE_OVERRIDE;
+    KSN_REQUIRE_OVERRIDE;
     return nil;
 }
 
 - (id)userSession
 {
-    REQUIRE_OVERRIDE;
+    KSN_REQUIRE_OVERRIDE;
     return nil;
 }
 

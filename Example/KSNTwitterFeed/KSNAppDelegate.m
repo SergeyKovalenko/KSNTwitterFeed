@@ -6,14 +6,14 @@
 //  Copyright (c) 2016 Sergey Kovalenko. All rights reserved.
 //
 
-#import <KSNTwitterFeed/KSNTwitterSocialAdapter.h>
 #import <KSNErrorHandler/KSNErrorHandler.h>
 #import <MagicalRecord/MagicalRecord.h>
-#import "UIAlertController+WMLShortcut.h"
+#import <KSNTwitterFeed/KSNTwitterFeed.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import "KSNRootViewController.h"
 #import "KSNRootViewModel.h"
-#import <KSNTwitterFeed/KSNTwitterAPI.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UIAlertController+WMLShortcut.h"
 
 @interface KSNAppDelegate () <KSNTwitterResponseDeserializer>
 
@@ -37,13 +37,19 @@
 
     self.twitterSocialAdapter = [[KSNTwitterSocialAdapter alloc] init];
     self.api = [[KSNTwitterAPI alloc] initWithSocialAdapter:self.twitterSocialAdapter];
-    [[self.api userTimeLineWithDeserializer:self sinceTweetID:nil maxTweetID:nil count:nil] subscribeNext:^(id x) {
+    
+    KSNNetworkModelDeserializer *deserializer = [[KSNNetworkModelDeserializer alloc] initWithModelMapping:[KSNTweet tweetMapping]
+                                                                                                  context:[NSManagedObjectContext MR_context]
+                                                                                   JSONNormalizationBlock:nil];
+    [[self.api userTimeLineWithDeserializer:deserializer sinceTweetID:nil maxTweetID:nil count:nil] subscribeNext:^(id x) {
         NSLog(@"%@",x);
     } error:^(NSError *error) {
         NSLog(@"error %@",error);
     } completed:^{
-        NSLog(@"com");
+        NSArray*all = [KSNTweet MR_findAll];
+        NSLog(@"com %@", all);
     }];
+
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [self createRootControllerWithTwitterSocialAdapter:self.twitterSocialAdapter];
     [self.window makeKeyAndVisible];
@@ -53,6 +59,8 @@
 - (void)setupPersistentStore
 {
     NSURL *storeURL = [NSPersistentStore MR_defaultLocalStoreUrl];
+    [NSManagedObjectModel MR_setDefaultManagedObjectModel:[KSNTweet managedObjectModel]];
+    
     [MagicalRecord setupCoreDataStackWithStoreAtURL:storeURL];
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     // No need to unsubscribe

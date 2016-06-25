@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <KSNNetworkClient/KSNNetworkClient.h>
 #import "KSNTwitterAPI.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -21,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithModelMapping:(FEMMapping *)mapping JSONNormalizationBlock:(nullable id (^)(id, NSError **))normalizationBlock;
 - (instancetype)initWithModelMapping:(FEMMapping *)mapping
                              context:(NSManagedObjectContext *)context
-              JSONNormalizationBlock:(id (^)(id, NSError **))normalizationBlock;
+              JSONNormalizationBlock:(nullable id (^)(id, NSError **))normalizationBlock;
 
 @property (nonatomic, strong, readonly) FEMDeserializer *deserializer;
 @property (nonatomic, strong, readonly) FEMMapping *mapping;
