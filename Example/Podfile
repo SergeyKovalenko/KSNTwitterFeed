@@ -9,11 +9,11 @@ def shared_pods
     # Private pods (from KSNTwitterFeed.podspec)
     pod 'KSNObservable', :path => '../Development Pods/KSNObservable'
     pod 'KSNErrorHandler', :path => '../Development Pods/KSNErrorHandler'
-    pod 'KSNNetworkClient', :path => '../Development Pods/KSNNetworkClient'
+#    pod 'KSNNetworkClient', :path => '../Development Pods/KSNNetworkClient'
     pod 'KSNDataSource', :path => '../Development Pods/KSNDataSource'
-    pod 'KSNFeed', :path => '../Development Pods/KSNFeed'
+#    pod 'KSNFeed', :path => '../Development Pods/KSNFeed'
     pod 'KSNUtils', :path => '../Development Pods/KSNUtils'
-    pod 'KSNXibLoadedView', :path => '../Development Pods/KSNXibLoadedView'
+#    pod 'KSNXibLoadedView', :path => '../Development Pods/KSNXibLoadedView'
     # Changed pods
     pod 'AFMInfoBanner', :path => '../Development Pods/AFMInfoBanner'
     
@@ -22,6 +22,7 @@ def shared_pods
     pod 'CocoaLumberjack'
     pod 'MagicalRecord' # I don't like this pod, but it's not a right place to come up with self-made velosiped :)
     #pod 'TwitterKit'
+    pod 'AsyncDisplayKit'
 end
 
 target 'KSNTwitterFeed_Example' do

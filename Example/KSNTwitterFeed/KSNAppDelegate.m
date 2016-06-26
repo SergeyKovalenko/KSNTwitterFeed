@@ -10,24 +10,21 @@
 #import <MagicalRecord/MagicalRecord.h>
 #import <KSNTwitterFeed/KSNTwitterFeed.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <KSNTwitterFeed/KSNTwitterFeedDataProvider.h>
+#import <KSNTwitterFeed/KSNTwitterManagedObjectFeedContext.h>
 
 #import "KSNRootViewController.h"
 #import "KSNRootViewModel.h"
 #import "UIAlertController+WMLShortcut.h"
 
-@interface KSNAppDelegate () <KSNTwitterResponseDeserializer>
+@interface KSNAppDelegate ()
 
 @property (nonatomic, strong) KSNTwitterSocialAdapter *twitterSocialAdapter;
 @property (nonatomic, strong, readwrite) KSNErrorHandler *errorHandler;
-@property (nonatomic, strong) KSNTwitterAPI *api;
+
 @end
 
 @implementation KSNAppDelegate
-
-- (nullable id)parseJSON:(id)json error:(NSError * _Nullable *)pError;
-{
-    return json;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -36,19 +33,6 @@
     [self setupPersistentStore];
 
     self.twitterSocialAdapter = [[KSNTwitterSocialAdapter alloc] init];
-    self.api = [[KSNTwitterAPI alloc] initWithSocialAdapter:self.twitterSocialAdapter];
-    
-    KSNNetworkModelDeserializer *deserializer = [[KSNNetworkModelDeserializer alloc] initWithModelMapping:[KSNTweet tweetMapping]
-                                                                                                  context:[NSManagedObjectContext MR_context]
-                                                                                   JSONNormalizationBlock:nil];
-    [[self.api userTimeLineWithDeserializer:deserializer sinceTweetID:nil maxTweetID:nil count:nil] subscribeNext:^(id x) {
-        NSLog(@"%@",x);
-    } error:^(NSError *error) {
-        NSLog(@"error %@",error);
-    } completed:^{
-        NSArray*all = [KSNTweet MR_findAll];
-        NSLog(@"com %@", all);
-    }];
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [self createRootControllerWithTwitterSocialAdapter:self.twitterSocialAdapter];
@@ -58,10 +42,13 @@
 
 - (void)setupPersistentStore
 {
-    NSURL *storeURL = [NSPersistentStore MR_defaultLocalStoreUrl];
-    [NSManagedObjectModel MR_setDefaultManagedObjectModel:[KSNTweet managedObjectModel]];
-    
-    [MagicalRecord setupCoreDataStackWithStoreAtURL:storeURL];
+    NSURL * (^setupBlock)(void) = ^{
+        NSURL *storeURL = [NSPersistentStore MR_defaultLocalStoreUrl];
+        [NSManagedObjectModel MR_setDefaultManagedObjectModel:[KSNTweet managedObjectModel]];
+        [MagicalRecord setupCoreDataStackWithStoreAtURL:storeURL];
+        return storeURL;
+    };
+    NSURL *storeURL = setupBlock();
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     // No need to unsubscribe
     [center addObserverForName:KSNTwitterSocialAdapterDidEndUserSessionNotification
@@ -80,7 +67,7 @@
                             LOG_ERROR(@"Clean up DB Error: %@", cleanUpError);
                         }
                         // Setup Core Data Stack just to be ready for the next user session
-                        [MagicalRecord setupCoreDataStackWithStoreAtURL:storeURL];
+                        setupBlock();
                     }];
 }
 

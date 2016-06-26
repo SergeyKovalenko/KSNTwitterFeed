@@ -5,11 +5,14 @@
 
 #import "KSNTwitterFeedViewController.h"
 #import "KSNTwitterFeedViewModel.h"
+#import "KSNFeedViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <KSNUtils/UIViewController+KSNChildViewController.h>
 
 @interface KSNTwitterFeedViewController ()
 
 @property (nonatomic, readwrite) KSNTwitterFeedViewModel *viewModel;
+@property (nonatomic, strong) KSNFeedViewController *feedViewController;
 @end
 
 @implementation KSNTwitterFeedViewController
@@ -26,6 +29,8 @@
                                                                                  action:nil];
         self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.logoutCommand;
         RAC(self, title) = RACObserve(viewModel, username);
+        self.feedViewController = [[KSNFeedViewController alloc] init];
+        self.feedViewController.dataSource = [viewModel feedDataSource];
     }
 
     return self;
@@ -46,6 +51,15 @@
 {
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self ksn_addChildViewControllerAndSubview:self.feedViewController viewAdjustmentBlock:^(UIView *view) {
+        view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        view.frame = self.view.bounds;
+    }];
 }
 
 @end

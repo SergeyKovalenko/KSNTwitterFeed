@@ -37,22 +37,11 @@
     s.frameworks = 'UIKit', 'Foundation'
 
     # Private pods
-
-    # s.dependency 'KSNObservable'
-    # s.dependency 'KSNErrorHandler'
-    # s.dependency 'KSNNetworkClient'
-    # s.dependency 'KSNDataSource'
-    # s.dependency 'KSNFeed'
     s.dependency 'KSNUtils'
 
-    # Changed pods
-    s.dependency 'AFMInfoBanner'
-
     # Public pods
-
     s.dependency 'AFNetworking', '~> 3.0'
     s.dependency 'ReactiveCocoa', '2.5'
-    # s.dependency 'Masonry'
-    # s.dependency 'AsyncDisplayKit'
     s.dependency 'FastEasyMapping'
-    end
+
+end

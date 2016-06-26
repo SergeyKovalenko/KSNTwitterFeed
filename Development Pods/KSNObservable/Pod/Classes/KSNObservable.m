@@ -86,7 +86,18 @@ static NSMapTable *createSignaturesForProtocolMethods(BOOL isRequiredMethod, Pro
         [_lock lock];
         for (id listener in [_listeners allObjects])
         {
-            [invocation invokeWithTarget:listener];
+            if (self.notificationQueue)
+            {
+                [invocation retainArguments];
+                dispatch_async(self.notificationQueue, ^{
+                    [invocation invokeWithTarget:listener];
+                });
+            }
+            else
+            {
+                [invocation invokeWithTarget:listener];
+            }
+
             if (self.showDebugLogs)
             {
                 NSLog(@"forwardInvocation %@ to %@", NSStringFromSelector(invocation.selector), listener);
@@ -101,7 +112,17 @@ static NSMapTable *createSignaturesForProtocolMethods(BOOL isRequiredMethod, Pro
         {
             if ([listener respondsToSelector:invocation.selector])
             {
-                [invocation invokeWithTarget:listener];
+                if (self.notificationQueue)
+                {
+                    [invocation retainArguments];
+                    dispatch_async(self.notificationQueue, ^{
+                        [invocation invokeWithTarget:listener];
+                    });
+                }
+                else
+                {
+                    [invocation invokeWithTarget:listener];
+                }
                 if (self.showDebugLogs)
                 {
                     NSLog(@"forwardInvocation %@ to %@", NSStringFromSelector(invocation.selector), listener);

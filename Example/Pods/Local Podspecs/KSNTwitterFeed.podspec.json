@@ -32,9 +32,6 @@
     "KSNUtils": [
 
     ],
-    "AFMInfoBanner": [
-
-    ],
     "AFNetworking": [
       "~> 3.0"
     ],

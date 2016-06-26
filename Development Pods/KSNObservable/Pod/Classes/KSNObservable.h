@@ -13,11 +13,12 @@
 
 @end
 
-// Фll listeners should implement observableProtocol
+// All listeners should implement observableProtocol
 @interface KSNObservable : NSProxy <KSNObservable>
 
 - (instancetype)initWithProtocol:(Protocol *)observableProtocol;
 @property (nonatomic, assign) BOOL showDebugLogs;
+@property (nonatomic, strong) dispatch_queue_t notificationQueue;
 @end
 
 @interface KSNDelegate : KSNObservable

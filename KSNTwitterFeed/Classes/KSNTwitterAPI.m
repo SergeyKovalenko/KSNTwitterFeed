@@ -95,11 +95,11 @@
     if (!reloadForEachSubscriber)
     {
         RACMulticastConnection *connection = [networkRequest multicast:[RACReplaySubject subject]];
-        return [[connection autoconnect] deliverOnMainThread];
+        return [connection autoconnect];
     }
     else
     {
-        return [networkRequest deliverOnMainThread];
+        return networkRequest;
     }
 }
 
@@ -145,9 +145,10 @@
     NSURL *URL = [self buildURLWithPath:@"statuses/user_timeline.json"];
     SLRequest *request = [self requestWithMethod:SLRequestMethodGET
                                              URL:URL
-                                      parameters:@{@"since_id" : sinceID ?: [NSNull null],
-                                                   @"max_id"   : maxTweetID ?: [NSNull null],
-                                                   @"count"    : count ?: [NSNull null]}];
+                                      parameters:@{@"since_id" : sinceID.stringValue ?: [NSNull null],
+                                                   @"max_id"   : maxTweetID.stringValue ?: [NSNull null],
+                                                   @"count"    : count.stringValue ?: [NSNull null]
+                                                   }];
 
     return [self performRequestWithHandler:request deserializer:deserializer reloadForEachSubscriber:NO];
 }

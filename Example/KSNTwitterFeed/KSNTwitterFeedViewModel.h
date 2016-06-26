@@ -7,6 +7,7 @@
 
 @class RACCommand;
 @class KSNTwitterSocialAdapter;
+@protocol KSNCellNodeDataSource;
 
 @interface KSNTwitterFeedViewModel : NSObject
 
@@ -14,5 +15,7 @@
 
 @property (nonatomic, readonly) RACCommand *logoutCommand;
 @property (nonatomic, readonly) NSString *username;
+
+- (id <KSNCellNodeDataSource>)feedDataSource;
 
 @end

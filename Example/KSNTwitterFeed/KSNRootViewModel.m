@@ -12,8 +12,6 @@
 @interface KSNRootViewModel ()
 
 @property (nonatomic, readwrite) KSNTwitterSocialAdapter *twitterSocialAdapter;
-@property (nonatomic, readwrite) KSNTwitterLoginViewModel *twitterLoginViewModel;
-@property (nonatomic, readwrite) KSNTwitterFeedViewModel *twitterFeedViewModel;
 @property (nonatomic, strong) RACReplaySubject *transitionSubject;
 @property (nonatomic, strong) NSMutableArray *observers;
 @end
@@ -26,8 +24,6 @@
     if (self)
     {
         _twitterSocialAdapter = twitterSocialAdapter;
-        _twitterLoginViewModel = [[KSNTwitterLoginViewModel alloc] initWithSocialAdapter:twitterSocialAdapter];
-        _twitterFeedViewModel = [[KSNTwitterFeedViewModel alloc] initWithTwitterSocialAdapter:twitterSocialAdapter];
         _transitionSubject = [RACReplaySubject replaySubjectWithCapacity:1];
         [_transitionSubject sendNext:[twitterSocialAdapter userSession] ? @(KSNRootViewModelToFeedTransition) : @(KSNRootViewModelToLoginTransition)];
         self.observers = [NSMutableArray arrayWithCapacity:2];
@@ -45,6 +41,18 @@
 - (RACSignal *)transitionSignal
 {
     return self.transitionSubject;
+}
+
+- (KSNTwitterFeedViewModel *)twitterFeedViewModel;
+{
+    return [[KSNTwitterFeedViewModel alloc] initWithTwitterSocialAdapter:self.twitterSocialAdapter];
+
+}
+
+- (KSNTwitterLoginViewModel *)twitterLoginViewModel
+{
+    return [[KSNTwitterLoginViewModel alloc] initWithSocialAdapter:self.twitterSocialAdapter];
+
 }
 
 #pragma mark - Private Methods

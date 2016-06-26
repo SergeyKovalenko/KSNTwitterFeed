@@ -13,6 +13,7 @@
 		2BE8AA661D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8AA631D1AF9CB00F8B174 /* NSMutableArray+NTFQueueAdditions.m */; };
 		2BE8AA671D1AF9CB00F8B174 /* NSObject+KSNModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8AA651D1AF9CB00F8B174 /* NSObject+KSNModal.m */; };
 		2BE8AA6F1D1B2A8100F8B174 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BCD52DA1D19E25200E119A7 /* Launch Screen.storyboard */; };
+		2BEC04D51D1FEB5C009E24E2 /* KSNFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC04D21D1FEB5C009E24E2 /* KSNFeedViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -30,10 +31,13 @@
 		997B91F8FEB1EF38B5F58E84 /* Pods_KSNTwitterFeed_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F40843802E5EA62AF9FCA1 /* Pods_KSNTwitterFeed_Example.framework */; };
 		ED86F4213A48078B7642E95D /* KSNRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86FF491233DBCB36DBEE57 /* KSNRootViewController.m */; };
 		ED86F571412A27AC7F9C23E0 /* KSNTwitterLoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86F043AB3777C30AB3E638 /* KSNTwitterLoginViewModel.m */; };
+		ED86F716CC5F937EF49E43E4 /* KSNFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86F8E2909CA3B81E3A8771 /* KSNFeedDataSource.m */; };
+		ED86F94B195B540D98381517 /* KSNManagedObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86FCBD1B05848873CCE350 /* KSNManagedObjectStore.m */; };
 		ED86FA9B6DD206E47836E36F /* KSNTwitterFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86F532D1302FC0DA150448 /* KSNTwitterFeedViewController.m */; };
 		ED86FBC51224DDBB746EB4F2 /* KSNTwitterFeedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86FD2973301490D5FD0945 /* KSNTwitterFeedViewModel.m */; };
 		ED86FBCB6C51D4D0DDDEE285 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED86F936BC66AF20F813B513 /* Localizable.strings */; };
 		ED86FC252049EE8620B7FBE0 /* KSNRootViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86F5BEAF7DFA099E843386 /* KSNRootViewModel.m */; };
+		ED86FCA5C70C42E8CDB168A3 /* KSNCellNodeDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86FE1EA6DF33DA7966CDA7 /* KSNCellNodeDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		2BE8AA641D1AF9CB00F8B174 /* NSObject+KSNModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KSNModal.h"; sourceTree = "<group>"; };
 		2BE8AA651D1AF9CB00F8B174 /* NSObject+KSNModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KSNModal.m"; sourceTree = "<group>"; };
 		2BE8AA681D1AFC5200F8B174 /* KSNLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSNLogging.h; sourceTree = "<group>"; };
+		2BEC04D11D1FEB5C009E24E2 /* KSNFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNFeedViewController.h; sourceTree = "<group>"; };
+		2BEC04D21D1FEB5C009E24E2 /* KSNFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNFeedViewController.m; sourceTree = "<group>"; };
+		2BEC04D31D1FEB5C009E24E2 /* WMLNewsItemCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLNewsItemCellNode.h; sourceTree = "<group>"; };
+		2BEC04D41D1FEB5C009E24E2 /* WMLNewsItemCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLNewsItemCellNode.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* twitterfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twitterfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -87,14 +95,20 @@
 		D7F40843802E5EA62AF9FCA1 /* Pods_KSNTwitterFeed_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSNTwitterFeed_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DB23DEF5D266A7C9A10D4F /* Pods-KSNTwitterFeed_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSNTwitterFeed_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KSNTwitterFeed_Tests/Pods-KSNTwitterFeed_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED86F043AB3777C30AB3E638 /* KSNTwitterLoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNTwitterLoginViewModel.m; sourceTree = "<group>"; };
+		ED86F110900A6FBAFE1D2F76 /* KSNCellNodeDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNCellNodeDataSource.h; sourceTree = "<group>"; };
 		ED86F17DCF7B25E6AA394BAF /* KSNTwitterLoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNTwitterLoginViewModel.h; sourceTree = "<group>"; };
+		ED86F2F03FEF4A64BD7DFF41 /* KSNManagedObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNManagedObjectStore.h; sourceTree = "<group>"; };
 		ED86F40388FE0EFA5A7987CF /* KSNTwitterFeedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNTwitterFeedViewModel.h; sourceTree = "<group>"; };
+		ED86F440D83111AC930A0439 /* KSNFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNFeedDataSource.h; sourceTree = "<group>"; };
 		ED86F532D1302FC0DA150448 /* KSNTwitterFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNTwitterFeedViewController.m; sourceTree = "<group>"; };
 		ED86F581C509BDF00826AB5A /* KSNRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNRootViewController.h; sourceTree = "<group>"; };
 		ED86F5BEAF7DFA099E843386 /* KSNRootViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNRootViewModel.m; sourceTree = "<group>"; };
+		ED86F8E2909CA3B81E3A8771 /* KSNFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNFeedDataSource.m; sourceTree = "<group>"; };
 		ED86F936BC66AF20F813B513 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		ED86FCBD1B05848873CCE350 /* KSNManagedObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNManagedObjectStore.m; sourceTree = "<group>"; };
 		ED86FD2973301490D5FD0945 /* KSNTwitterFeedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNTwitterFeedViewModel.m; sourceTree = "<group>"; };
 		ED86FD70A9800175B6FC53BE /* KSNTwitterFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNTwitterFeedViewController.h; sourceTree = "<group>"; };
+		ED86FE1EA6DF33DA7966CDA7 /* KSNCellNodeDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNCellNodeDataSource.m; sourceTree = "<group>"; };
 		ED86FE2EF2D6A5650DC3CE04 /* KSNRootViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNRootViewModel.h; sourceTree = "<group>"; };
 		ED86FF491233DBCB36DBEE57 /* KSNRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNRootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +209,16 @@
 				ED86F532D1302FC0DA150448 /* KSNTwitterFeedViewController.m */,
 				ED86F40388FE0EFA5A7987CF /* KSNTwitterFeedViewModel.h */,
 				ED86FD2973301490D5FD0945 /* KSNTwitterFeedViewModel.m */,
+				2BEC04D11D1FEB5C009E24E2 /* KSNFeedViewController.h */,
+				2BEC04D21D1FEB5C009E24E2 /* KSNFeedViewController.m */,
+				2BEC04D31D1FEB5C009E24E2 /* WMLNewsItemCellNode.h */,
+				2BEC04D41D1FEB5C009E24E2 /* WMLNewsItemCellNode.m */,
+				ED86F8E2909CA3B81E3A8771 /* KSNFeedDataSource.m */,
+				ED86F440D83111AC930A0439 /* KSNFeedDataSource.h */,
+				ED86FCBD1B05848873CCE350 /* KSNManagedObjectStore.m */,
+				ED86F2F03FEF4A64BD7DFF41 /* KSNManagedObjectStore.h */,
+				ED86FE1EA6DF33DA7966CDA7 /* KSNCellNodeDataSource.m */,
+				ED86F110900A6FBAFE1D2F76 /* KSNCellNodeDataSource.h */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -501,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BEC04D51D1FEB5C009E24E2 /* KSNFeedViewController.m in Sources */,
 				6003F59E195388D20070C39A /* KSNAppDelegate.m in Sources */,
 				2BE8AA5E1D1AF93D00F8B174 /* UIAlertController+WMLShortcut.m in Sources */,
 				2BA614A51D1A7932008C2713 /* KSNTransitionViewController.m in Sources */,
@@ -513,6 +538,9 @@
 				ED86F571412A27AC7F9C23E0 /* KSNTwitterLoginViewModel.m in Sources */,
 				ED86FBC51224DDBB746EB4F2 /* KSNTwitterFeedViewModel.m in Sources */,
 				ED86FA9B6DD206E47836E36F /* KSNTwitterFeedViewController.m in Sources */,
+				ED86F716CC5F937EF49E43E4 /* KSNFeedDataSource.m in Sources */,
+				ED86F94B195B540D98381517 /* KSNManagedObjectStore.m in Sources */,
+				ED86FCA5C70C42E8CDB168A3 /* KSNCellNodeDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KSNTwitterFeed/KSNTwitterFeed-Prefix.pch";
 				INFOPLIST_FILE = "KSNTwitterFeed/KSNTwitterFeed-Info.plist";

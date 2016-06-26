@@ -1,6 +1,0 @@
-framework module KSNFeed {
-  umbrella header "KSNFeed-umbrella.h"
-
-  export *
-  module * { export * }
-}
