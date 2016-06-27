@@ -1,14 +1,16 @@
 #import <UIKit/UIKit.h>
 
-#import "KSNFeedDataProvider.h"
 #import "KSNNetworkModelDeserializer.h"
-#import "KSNSocialAdapter.h"
-#import "KSNSocialNetworksMediator.h"
 #import "KSNTweet.h"
 #import "KSNTwitterAPI.h"
-#import "KSNTwitterFeed.h"
+#import "KSNFeedDataProvider.h"
+#import "KSNFeedDataSource.h"
+#import "KSNManagedObjectStore.h"
 #import "KSNTwitterFeedDataProvider.h"
 #import "KSNTwitterManagedObjectFeedContext.h"
+#import "KSNTwitterFeed.h"
+#import "KSNSocialAdapter.h"
+#import "KSNSocialNetworksMediator.h"
 #import "KSNTwitterSocialAdapter.h"
 
 FOUNDATION_EXPORT double KSNTwitterFeedVersionNumber;

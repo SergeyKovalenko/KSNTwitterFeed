@@ -137,6 +137,7 @@
         @strongify(self);
         [self startLoading];
         int64_t sinceID = self.context.sinceTweetId;
+
         void (^handler)(NSArray *, NSError *) = ^(NSArray *tweets, NSError *error) {
             @strongify(self);
 
@@ -153,9 +154,10 @@
             [self endLoading];
         };
 
-        NSNumber *TweetID = self.context.maxTweetId > 0 ? @(self.context.maxTweetId - 1) : nil;
-        return [self.context performTweetsRequestSinceTweetID:self.sinceID
-                                                   maxTweetID:TweetID
+        NSNumber *maxTweetID = self.context.maxTweetId > 0 ? @(self.context.maxTweetId - 1) : nil;
+        NSNumber *sinceTweetID = sinceID > 0 ? @(sinceID) : nil;
+        return [self.context performTweetsRequestSinceTweetID:sinceTweetID
+                                                   maxTweetID:maxTweetID
                                                         count:self.pageSize
                                                       handler:handler];;
     }];

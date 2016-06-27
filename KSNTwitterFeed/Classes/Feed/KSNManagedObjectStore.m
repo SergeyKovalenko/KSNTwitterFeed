@@ -4,6 +4,9 @@
 //
 
 #import "KSNManagedObjectStore.h"
+#import "NSManagedObject+MagicalRecord.h"
+#import <KSNUtils/KSNGlobalFunctions.h>
+
 @import CoreData;
 
 @interface KSNManagedObjectStore ()
@@ -15,16 +18,18 @@
 
 @implementation KSNManagedObjectStore
 
-- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context sortDescriptors:(NSArray <NSSortDescriptor *> *)sortDescriptors;
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context fetchRequest:(NSFetchRequest *)fetchRequest;
 {
     NSParameterAssert(context);
-    NSParameterAssert(sortDescriptors.count);
+    NSParameterAssert(fetchRequest.sortDescriptors.count);
     self = [super init];
     if (self)
     {
         self.context = context;
-        self.sortDescriptors = sortDescriptors;
+        self.sortDescriptors = [fetchRequest.sortDescriptors copy];
         self.store = [NSMutableArray array];
+        NSArray *persistedObjects = [NSManagedObject MR_executeFetchRequest:fetchRequest inContext:context];
+        [self.store addObjectsFromArray:persistedObjects];
     }
 
     return self;
@@ -109,6 +114,5 @@
             return 0;
     }
 }
-
 
 @end

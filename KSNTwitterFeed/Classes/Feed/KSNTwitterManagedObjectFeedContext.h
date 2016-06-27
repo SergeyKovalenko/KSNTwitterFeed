@@ -7,8 +7,12 @@
 
 @class KSNTwitterAPI;
 @class KSNNetworkModelDeserializer;
+@class NSFetchRequest;
 
 @interface KSNTwitterManagedObjectFeedContext : NSObject <KSNTwitterFeedContext>
 
 - (instancetype)initWithAPI:(KSNTwitterAPI *)api managedObjectContect:(NSManagedObjectContext *)context;
+
+- (NSFetchRequest *)feedRequest;
+
 @end

@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KSNFeedDataSource.h"
+#import <KSNTwitterFeed/KSNTwitterFeed.h>
 #import "KSNFeedViewController.h"
 
 typedef ASCellNode *(^KSNCellNodeConfigurationBlock)(id model);

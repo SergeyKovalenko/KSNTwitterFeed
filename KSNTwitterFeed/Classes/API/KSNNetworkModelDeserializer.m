@@ -82,7 +82,7 @@
     {
         self.context = context;
         FEMManagedObjectStore *store =[[FEMManagedObjectStore alloc] initWithContext:context];
-//        store.saveContextOnCommit = YES;
+        store.saveContextOnCommit = YES;
         self.deserializer = [[FEMDeserializer alloc] initWithStore:store];
         self.mapping = mapping;
         self.normalizationBlock = normalizationBlock;

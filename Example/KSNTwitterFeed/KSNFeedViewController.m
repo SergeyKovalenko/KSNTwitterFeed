@@ -3,12 +3,15 @@
 // Copyright (c) 2016 Windmill. All rights reserved.
 //
 
+#import <KSNErrorHandler/KSNErrorHandler.h>
 #import "KSNFeedViewController.h"
+#import "KSNLoadingView.h"
 
 @interface KSNFeedViewController () <ASTableDataSource, ASTableDelegate, KSNDataSourceObserver>
 
 @property (nonatomic, strong) ASTableNode *tableNode;
 
+@property (nonatomic, strong) KSNLoadingView *loadingView;
 @end
 
 @implementation KSNFeedViewController
@@ -49,6 +52,8 @@
     [super viewDidLoad];
     [self.dataSource addChangeObserver:self];
     [self refreshFeed];
+    self.loadingView = [[KSNLoadingView alloc] init];
+    self.tableNode.view.backgroundView = self.loadingView;
 }
 
 - (void)setDataSource:(id <KSNCellNodeDataSource>)dataSource
@@ -66,7 +71,8 @@
 
 - (void)refreshFeed
 {
-    [self.dataSource refreshWithCompletion:nil];
+    [self.dataSource refreshWithCompletion:^{
+    }];
 }
 
 - (void)loadNextPageWithContext:(ASBatchContext *)context
@@ -116,6 +122,9 @@
 
 - (void)dataSource:(id <KSNDataSource>)dataSource updateFailedWithError:(NSError *)error
 {
+    [APP_DELEGATE.errorHandler handleError:error];
+    [self.loadingView.activityIndicator stopAnimating];
+    self.tableNode.view.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (void)dataSourceRefreshed:(id <KSNDataSource>)dataSource userInfo:(NSDictionary *)userInfo
@@ -125,12 +134,14 @@
 
 - (void)dataSourceBeginNetworkUpdate:(id <KSNDataSource>)dataSource
 {
-    
+    [self.loadingView.activityIndicator startAnimating];
+    self.tableNode.view.contentInset = UIEdgeInsetsMake(0, 0, 55, 0);
 }
 
 - (void)dataSourceEndNetworkUpdate:(id <KSNDataSource>)dataSource
 {
-    // NO-OP (views will be set up accordingly in the success / error handling)
+    [self.loadingView.activityIndicator stopAnimating];
+    self.tableNode.view.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (void)dataSource:(id <KSNDataSource>)datasource didChange:(KSNDataSourceChangeType)change atSectionIndex:(NSInteger)sectionIndex

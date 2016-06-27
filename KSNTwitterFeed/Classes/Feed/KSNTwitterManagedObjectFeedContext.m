@@ -6,6 +6,8 @@
 #import "KSNTwitterAPI.h"
 #import "KSNNetworkModelDeserializer.h"
 #import "KSNTweet.h"
+#import "NSManagedObject+MagicalRequests.h"
+#import "NSManagedObject+MagicalFinders.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <KSNUtils/KSNGlobalFunctions.h>
 
@@ -25,6 +27,7 @@
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) KSNTwitterAPI *api;
 @property (nonatomic, strong) KSNNetworkModelDeserializer *deserializer;
+@property (nonatomic, strong) NSFetchRequest *feedRequest;
 @property (nonatomic, assign) int64_t maxTweetId;
 @property (nonatomic, assign) int64_t sinceTweetId;
 @end
@@ -44,10 +47,15 @@
     if (self)
     {
         self.context = context;
+        self.feedRequest = [KSNTweet MR_requestAllSortedBy:@keypath(KSNTweet.new, tweetID) ascending:NO inContext:context];
         self.api = api;
         self.deserializer = [[KSNNetworkModelDeserializer alloc] initWithModelMapping:[KSNTweet tweetMapping]
                                                                               context:context
                                                                JSONNormalizationBlock:nil];
+        [context performBlockAndWait:^{
+            KSNTweet *newestTweet = [KSNTweet MR_findFirstOrderedByAttribute:@keypath(KSNTweet.new, tweetID) ascending:NO inContext:context];
+            self.sinceTweetId = newestTweet.tweetID;
+        }];
     }
 
     return self;
@@ -59,7 +67,8 @@
                                               handler:(KSNTweetsRequestHandler)handler
 {
     @weakify(self);
-    return [[self.api userTimeLineWithDeserializer:self.deserializer sinceTweetID:sinceID maxTweetID:maxTweetID count:count] subscribeNext:^(id x) {
+    RACSignal *request = [self.api userTimeLineWithDeserializer:self.deserializer sinceTweetID:sinceID maxTweetID:maxTweetID count:count];
+    return [request subscribeNext:^(id x) {
         @strongify(self);
         [self.context performBlockAndWait:^{
             @strongify(self)
@@ -77,13 +86,12 @@
                 handler(tweets, nil);
             }
         }];
-    } error:^(NSError *error) {
+    }                       error:^(NSError *error) {
         if (handler)
         {
             handler(nil, error);
         }
     }];
 }
-
 
 @end

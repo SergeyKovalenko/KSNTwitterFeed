@@ -9,19 +9,16 @@ def shared_pods
     # Private pods (from KSNTwitterFeed.podspec)
     pod 'KSNObservable', :path => '../Development Pods/KSNObservable'
     pod 'KSNErrorHandler', :path => '../Development Pods/KSNErrorHandler'
-#    pod 'KSNNetworkClient', :path => '../Development Pods/KSNNetworkClient'
     pod 'KSNDataSource', :path => '../Development Pods/KSNDataSource'
-#    pod 'KSNFeed', :path => '../Development Pods/KSNFeed'
     pod 'KSNUtils', :path => '../Development Pods/KSNUtils'
-#    pod 'KSNXibLoadedView', :path => '../Development Pods/KSNXibLoadedView'
     # Changed pods
     pod 'AFMInfoBanner', :path => '../Development Pods/AFMInfoBanner'
     
     # Public pods
-    pod 'JRSwizzle' # I'm sorry mama. I'm trying to avoid method swizzling as much as I can. (One place where I can't avoid this is NSObject+KSNModal)
+    pod 'JRSwizzle' # I'm sorry mama. I'm trying to avoid method swizzling as much as I can. (One place where I can't avoid it - NSObject+KSNModal)
     pod 'CocoaLumberjack'
     pod 'MagicalRecord' # I don't like this pod, but it's not a right place to come up with self-made velosiped :)
-    #pod 'TwitterKit'
+    pod 'Masonry'
     pod 'AsyncDisplayKit'
 end
 
@@ -40,14 +37,11 @@ post_install do |installer|
     
     FileUtils.cp_r('./Pods/Target Support Files/Pods-KSNTwitterFeed_Example/Pods-KSNTwitterFeed_Example-acknowledgements.plist', './Settings.bundle/Acknowledgements.plist', :remove_destination => true)
     
-#    installer.pods_project.targets.each do |target|
-#        target.build_configurations.each do |config|
-#            config.build_settings['DEBUG_INFORMATION_FORMAT'] = "dwarf-with-dsym"
-#            config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
-#            config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
-#            config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
-#        end
-#    end
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['DEBUG_INFORMATION_FORMAT'] = "dwarf-with-dsym"
+        end
+    end
 end
 
 

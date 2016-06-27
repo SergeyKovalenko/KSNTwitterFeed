@@ -4,18 +4,14 @@
 //
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <KSNTwitterFeed/KSNSocialAdapter.h>
-#import <KSNTwitterFeed/KSNTwitterSocialAdapter.h>
-#import <KSNTwitterFeed/KSNTwitterAPI.h>
+#import <KSNTwitterFeed/KSNTwitterFeed.h>
+#import <MagicalRecord/MagicalRecord.h>
+
 #import "KSNTwitterFeedViewModel.h"
 #import "KSNCellNodeDataSource.h"
 #import "KSNManagedObjectStore.h"
 
 @import Accounts;
-#import <KSNTwitterFeed/KSNTwitterFeedDataProvider.h>
-#import <KSNTwitterFeed/KSNTwitterManagedObjectFeedContext.h>
-#import <MagicalRecord/NSManagedObjectContext+MagicalRecord.h>
-#import <KSNTwitterFeed/KSNTweet.h>
 
 @interface KSNTwitterFeedViewModel ()
 
@@ -37,13 +33,19 @@
         }];
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         RACSignal *startSessionSignal = [center rac_addObserverForName:KSNTwitterSocialAdapterDidStartUserSessionNotification
-                                                                object:twitterSocialAdapter];
+                                                                object:twitterSocialAdapter];    
         RACSignal *endSessionSignal = [center rac_addObserverForName:KSNTwitterSocialAdapterDidEndUserSessionNotification
                                                               object:twitterSocialAdapter];
+    
+        NSString *(^usernameBlock)(ACAccount *) = ^(ACAccount *account) {
+            return account ? [@"@" stringByAppendingString:account.username] : @"";
+        };
+        
         RAC(self, username) = [[[RACSignal merge:@[startSessionSignal,
-                                                   endSessionSignal]] map:^id(id value) {
-            return [twitterSocialAdapter activeAccount].username;
-        }] startWith:[twitterSocialAdapter activeAccount].username];
+                                                   endSessionSignal]] map:^id(NSNotification *notification) {
+            KSNTwitterSocialAdapter *adapter = KSNSafeCast([KSNTwitterSocialAdapter class], notification.object);
+            return usernameBlock(adapter.activeAccount);
+        }] startWith:usernameBlock(twitterSocialAdapter.activeAccount)];
 
         KSNTwitterAPI *api = [[KSNTwitterAPI alloc] initWithSocialAdapter:twitterSocialAdapter];
         NSManagedObjectContext *dataImportContext = [NSManagedObjectContext MR_context];
@@ -55,8 +57,7 @@
         NSManagedObjectContext *uiContext = [NSManagedObjectContext MR_newMainQueueContext];
         [uiContext setParentContext:dataImportContext];
 
-        NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@keypath(KSNTweet.new, tweetID) ascending:NO]];
-        KSNManagedObjectStore *store = [[KSNManagedObjectStore alloc] initWithManagedObjectContext:uiContext sortDescriptors:sortDescriptors];
+        KSNManagedObjectStore *store = [[KSNManagedObjectStore alloc] initWithManagedObjectContext:uiContext fetchRequest:feedContext.feedRequest];
         KSNCellNodeDataSource *feedDataSource = [[KSNCellNodeDataSource alloc] initWithDataProvider:dataProvider itemsStore:store];
         feedDataSource.configurationBlock = ^ASCellNode *(KSNTweet *model) {
             ASTextCellNode *textCellNode = [[ASTextCellNode alloc] init];

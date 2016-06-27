@@ -12,7 +12,13 @@
 #import <KSNTwitterFeed/KSNTwitterAPI.h>
 #import <KSNTwitterFeed/KSNNetworkModelDeserializer.h>
 #import <KSNTwitterFeed/KSNTweet.h>
+
 #import <KSNTwitterFeed/KSNFeedDataProvider.h>
+#import <KSNTwitterFeed/KSNFeedDataSource.h>
+#import <KSNTwitterFeed/KSNFeedDataSource.h>
+#import <KSNTwitterFeed/KSNManagedObjectStore.h>
+#import <KSNTwitterFeed/KSNTwitterFeedDataProvider.h>
+#import <KSNTwitterFeed/KSNTwitterManagedObjectFeedContext.h>
 
 #import <KSNTwitterFeed/KSNSocialAdapter.h>
 #import <KSNTwitterFeed/KSNSocialNetworksMediator.h>

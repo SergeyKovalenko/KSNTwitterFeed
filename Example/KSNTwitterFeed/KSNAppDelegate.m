@@ -10,8 +10,6 @@
 #import <MagicalRecord/MagicalRecord.h>
 #import <KSNTwitterFeed/KSNTwitterFeed.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <KSNTwitterFeed/KSNTwitterFeedDataProvider.h>
-#import <KSNTwitterFeed/KSNTwitterManagedObjectFeedContext.h>
 
 #import "KSNRootViewController.h"
 #import "KSNRootViewModel.h"
@@ -115,6 +113,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [[NSManagedObjectContext MR_rootSavingContext] MR_saveToPersistentStoreAndWait];
     [MagicalRecord cleanUp];
 }
 

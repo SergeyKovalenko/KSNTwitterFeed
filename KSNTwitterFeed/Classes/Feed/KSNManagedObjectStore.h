@@ -6,10 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "KSNFeedDataSource.h"
 
-@class NSManagedObjectID;
+@class NSManagedObjectID, NSFetchRequest;
 
 @interface KSNManagedObjectStore : NSObject <KSNItemsStore>
 
-- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context sortDescriptors:(NSArray <NSSortDescriptor *> *)sortDescriptors;
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context fetchRequest:(NSFetchRequest *)fetchRequest;
 
 @end

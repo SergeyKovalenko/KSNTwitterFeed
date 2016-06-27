@@ -38,10 +38,11 @@
 
     # Private pods
     s.dependency 'KSNUtils'
+    s.dependency 'KSNDataSource'
 
     # Public pods
     s.dependency 'AFNetworking', '~> 3.0'
     s.dependency 'ReactiveCocoa', '2.5'
     s.dependency 'FastEasyMapping'
-
+    s.dependency 'MagicalRecord'
 end

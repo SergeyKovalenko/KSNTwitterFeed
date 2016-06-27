@@ -25,4 +25,15 @@ typedef void(^KSNRequestHandler)(NSArray *items, NSError *error);
 - (id <KSNCanceling>)loadNextPageWithCompletion:(nullable KSNRequestHandler)completion;
 
 @end
+
+//@protocol KSNTwitterFeedContext <NSObject>
+//
+//- (NSOperation *)refreshOperation;
+//- (NSOperation *)refreshOperation;
+//
+//@end
+//
+//@interface KSNFeedDataProvider : NSObject <KSNFeedDataProvider>
+//
+//@end
 NS_ASSUME_NONNULL_END

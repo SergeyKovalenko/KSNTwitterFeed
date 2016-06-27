@@ -6,7 +6,9 @@
 #import <Foundation/Foundation.h>
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import <KSNDataSource/KSNDataSource.h>
-#import "KSNFeedDataSource.h"
+#import <KSNTwitterFeed/KSNTwitterFeed.h>
+
+@class KSNLoadingView;
 
 NS_ASSUME_NONNULL_BEGIN
 
