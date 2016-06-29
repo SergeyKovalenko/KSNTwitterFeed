@@ -37,6 +37,11 @@
                BlueprintName = "KSNTwitterFeed_Tests"
                ReferencedContainer = "container:KSNTwitterFeed.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "InitialTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

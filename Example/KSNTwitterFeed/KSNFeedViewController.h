@@ -9,6 +9,8 @@
 #import <KSNTwitterFeed/KSNTwitterFeed.h>
 
 @class KSNLoadingView;
+@class KSNRefreshMediatorInfo;
+@class KSNRefreshMediator;
 
 NS_ASSUME_NONNULL_BEGIN
 

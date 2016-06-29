@@ -148,10 +148,23 @@ static const CGFloat kDefaultHideInterval = 2.0;
 
 - (void)show:(BOOL)animated inView:(UIView *)view;
 {
+    [self show:animated inView:view belowSubview:view];
+}
+
+- (void)show:(BOOL)animated inView:(UIView *)view belowSubview:(UIView *)siblingSubview
+{
     [self applyStyle];
     [self sizeToFit];
     
-    [view addSubview:self];
+    if (siblingSubview)
+    {
+        [view insertSubview:self belowSubview:siblingSubview];
+    }
+    else
+    {
+        [view addSubview:self];
+    }
+    
     
     if (animated)
     {

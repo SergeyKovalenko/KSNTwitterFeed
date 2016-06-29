@@ -6,24 +6,41 @@
 #import "KSNFeedDataSource.h"
 #import <KSNTwitterFeed/KSNFeedDataProvider.h>
 #import <libkern/OSAtomic.h>
+#import <KSNObservable/KSNObservable.h>
 
-@interface KSNFeedDataSource ()
+static dispatch_queue_t dataprovider_notification_queue()
+{
+    static dispatch_queue_t ksn_dataprovider_notification_queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ksn_dataprovider_notification_queue = dispatch_queue_create("com.dataprovider.notification.queue", DISPATCH_QUEUE_SERIAL);
+    });
 
-@property (nonatomic, strong) id <KSNFeedDataProvider> dataProvider;
+    return ksn_dataprovider_notification_queue;
+}
+
+@interface KSNDataSource ()
+
+@property (nonatomic, strong) KSNObservable *observable;
+@end
+
+@interface KSNFeedDataSource () <KSNFeedDataProviderObserver>
+
+@property (nonatomic, strong) KSNFeedDataProvider *dataProvider;
 @property (nonatomic, strong) id <KSNItemsStore> store;
 @end
 
 @implementation KSNFeedDataSource
 {
-    int32_t volatile _hasLocked;
+    int32_t volatile _loading;
 }
 
-- (instancetype)init
+- (instancetype)init NS_UNAVAILABLE
 {
     return nil;
 }
 
-- (instancetype)initWithDataProvider:(id <KSNFeedDataProvider>)dataProvider itemsStore:(id <KSNItemsStore>)storeClass;
+- (instancetype)initWithDataProvider:(KSNFeedDataProvider *)dataProvider itemsStore:(id <KSNItemsStore>)storeClass;
 {
     NSParameterAssert(dataProvider);
     NSParameterAssert(storeClass);
@@ -31,83 +48,89 @@
     if (self)
     {
         self.dataProvider = dataProvider;
+        [self.dataProvider addObserver:self];
+        self.dataProvider.notificationQueue = dataprovider_notification_queue();
         self.store = storeClass;
+        self.observable.notificationQueue = dispatch_get_main_queue();
+
     }
 
     return self;
+}
+
+- (void)dealloc
+{
+    [self.dataProvider removeObserver:self];
 }
 
 #pragma mark - KSNFeedDataSource
 
 - (BOOL)isLoading
 {
-    return self.dataProvider.loading;
+    return _loading > 0;
 }
 
 - (void)lock
 {
-    OSAtomicCompareAndSwap32Barrier(0, 1, &_hasLocked);
+    self.dataProvider.suspended = YES;
 }
 
 - (void)unlock
 {
-    OSAtomicCompareAndSwap32Barrier(1, 0, &_hasLocked);
+    self.dataProvider.suspended = NO;
 }
 
 - (void)loadNextPageWithCompletion:(void (^)(void))completion
 {
-    if (!_hasLocked)
-    {
-        [self.notifyProxy dataSourceBeginNetworkUpdate:self];
-        [self.dataProvider loadNextPageWithCompletion:^(NSArray *items, NSError *error) {
-            if (error)
-            {
-                [self.notifyProxy dataSource:self updateFailedWithError:error];
-            }
-            else
-            {
-                [self addItems:items];
-                [self.notifyProxy dataSourceEndNetworkUpdate:self];
-            }
-
-            if (completion)
-            {
-                completion();
-            }
-        }];
-    }
-    else
-    {
-        //TODO: Add a pending operation to the serial queue
-    }
+    [self.dataProvider nextPageTaskWithCompletion:^{
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), completion);
+        }
+    }];
 }
 
 - (void)refreshWithCompletion:(void (^)(void))completion
 {
-    if (!_hasLocked)
-    {
-        [self.notifyProxy dataSourceBeginNetworkUpdate:self];
-        [self.dataProvider refreshWithCompletion:^(NSArray *items, NSError *error) {
-            if (error)
-            {
-                [self.notifyProxy dataSource:self updateFailedWithError:error];
-            }
-            else
-            {
-                [self addItems:items];
-                [self.notifyProxy dataSourceEndNetworkUpdate:self];
-            }
+    [self.dataProvider refreshDataTaskWithCompletion:^{
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), completion);
+        }
+    }];
+}
 
-            if (completion)
-            {
-                completion();
-            }
-        }];
+#pragma mark - KSNFeedDataProviderObserver
+
+- (void)feedDataProvider:(KSNFeedDataProvider *)dataProvider willStartTask:(KSNDaraProviderTask *)task
+{
+    OSAtomicIncrement32Barrier(&_loading);
+    [self.notifyProxy dataSourceBeginNetworkUpdate:self];
+}
+
+- (void)feedDataProvider:(KSNFeedDataProvider *)dataProvider didSuspendTask:(KSNDaraProviderTask *)task
+{
+    [self.notifyProxy dataSourceEndNetworkUpdate:self];
+}
+
+- (void)feedDataProvider:(KSNFeedDataProvider *)dataProvider didResumeTask:(KSNDaraProviderTask *)task;
+{
+    [self.notifyProxy dataSourceBeginNetworkUpdate:self];
+}
+
+- (void)feedDataProvider:(KSNFeedDataProvider *)dataProvider didCompleteTask:(KSNDaraProviderTask *)task withError:(NSError *)error
+{
+    if (error)
+    {
+        [self.notifyProxy dataSource:self updateFailedWithError:error];
     }
     else
     {
-        //TODO: Add a pending operation to the serial queue
+        [self addItems:task.items];
+        [self.notifyProxy dataSourceEndNetworkUpdate:self];
     }
+
+    OSAtomicDecrement32(&_loading);
 }
 
 #pragma mark - KSNFeedDataSource

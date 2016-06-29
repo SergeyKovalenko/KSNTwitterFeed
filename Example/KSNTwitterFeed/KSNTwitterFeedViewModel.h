@@ -4,12 +4,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KSNNetworkReachabilityViewModel.h"
 
 @class RACCommand;
 @class KSNTwitterSocialAdapter;
 @protocol KSNCellNodeDataSource;
 
-@interface KSNTwitterFeedViewModel : NSObject
+@interface KSNTwitterFeedViewModel : NSObject <KSNNetworkReachabilityViewModel>
 
 - (instancetype)initWithTwitterSocialAdapter:(KSNTwitterSocialAdapter *)twitterSocialAdapter;
 

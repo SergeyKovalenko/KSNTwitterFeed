@@ -9,7 +9,6 @@
 
 #import "KSNTwitterFeedViewModel.h"
 #import "KSNCellNodeDataSource.h"
-#import "KSNManagedObjectStore.h"
 
 @import Accounts;
 
@@ -19,6 +18,7 @@
 @property (nonatomic, readwrite) NSString *username;
 @property (nonatomic, strong) KSNTwitterAPI *api;
 @property (nonatomic, strong) id <KSNCellNodeDataSource> feedDataSource;
+@property (nonatomic, strong) KSNNetworkReachabilityViewModel *reachabilityViewModel;
 @end
 
 @implementation KSNTwitterFeedViewModel
@@ -31,16 +31,17 @@
         _logoutCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             return [twitterSocialAdapter endUserSession];
         }];
+
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         RACSignal *startSessionSignal = [center rac_addObserverForName:KSNTwitterSocialAdapterDidStartUserSessionNotification
-                                                                object:twitterSocialAdapter];    
+                                                                object:twitterSocialAdapter];
         RACSignal *endSessionSignal = [center rac_addObserverForName:KSNTwitterSocialAdapterDidEndUserSessionNotification
                                                               object:twitterSocialAdapter];
-    
+
         NSString *(^usernameBlock)(ACAccount *) = ^(ACAccount *account) {
             return account ? [@"@" stringByAppendingString:account.username] : @"";
         };
-        
+
         RAC(self, username) = [[[RACSignal merge:@[startSessionSignal,
                                                    endSessionSignal]] map:^id(NSNotification *notification) {
             KSNTwitterSocialAdapter *adapter = KSNSafeCast([KSNTwitterSocialAdapter class], notification.object);
@@ -52,8 +53,7 @@
         KSNTwitterManagedObjectFeedContext *feedContext = [[KSNTwitterManagedObjectFeedContext alloc] initWithAPI:api
                                                                                              managedObjectContect:dataImportContext];
 
-        KSNTwitterFeedDataProvider *dataProvider = [[KSNTwitterFeedDataProvider alloc] initWithTwitterFeedContext:feedContext];
-
+        KSNFeedDataProvider *dataProvider = [[KSNFeedDataProvider alloc] initWithDataProviderContext:feedContext];
         NSManagedObjectContext *uiContext = [NSManagedObjectContext MR_newMainQueueContext];
         [uiContext setParentContext:dataImportContext];
 
@@ -65,10 +65,28 @@
             return textCellNode;
         };
         self.feedDataSource = feedDataSource;
+
+        @weakify(self);
+        self.reachabilityViewModel = [[KSNNetworkReachabilityViewModel alloc] init];
+        [[[[self.reachabilityViewModel reachabilityStatusSignal] filter:^BOOL(NSNumber *status) {
+            return status.integerValue == KSNNetworkReachabilityStatusReachable;
+        }] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(id x) {
+            @strongify(self);
+            [self.feedDataSource refreshWithCompletion:nil];
+        }];
     }
 
     return self;
 }
 
+- (RACSignal *)reachabilityStatusSignal
+{
+    return [self.reachabilityViewModel reachabilityStatusSignal];
+}
+
+- (NSString *)stringFromNetworkReachabilityStatus:(KSNNetworkReachabilityStatus)status
+{
+    return [self.reachabilityViewModel stringFromNetworkReachabilityStatus:status];
+}
 
 @end

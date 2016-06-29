@@ -22,7 +22,6 @@
     if (self)
     {
         _observable = [[KSNObservable alloc] initWithProtocol:@protocol(KSNDataSourceObserver)];
-        _observable.notificationQueue = dispatch_get_main_queue();
     }
     return self;
 }

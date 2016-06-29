@@ -10,6 +10,8 @@
 #import "KSNTransitionViewController.h"
 #import "KSNLoginViewController.h"
 #import "KSNTwitterFeedViewController.h"
+#import "KSNTwitterFeedViewModel.h"
+#import "KSNNetworkReachabilityViewController.h"
 
 @interface KSNRootViewController ()
 
@@ -43,7 +45,8 @@
                 case KSNRootViewModelToFeedTransition:
                 {
                     KSNTwitterFeedViewController *feedViewController = [[KSNTwitterFeedViewController alloc] initWithViewModel:viewModel.twitterFeedViewModel];
-                    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedViewController];
+                    KSNNetworkReachabilityViewController *navigationController = [[KSNNetworkReachabilityViewController alloc] initWithRootViewController:feedViewController];
+                    navigationController.viewModel = viewModel.twitterFeedViewModel;
                     [navigationController setNavigationBarHidden:YES];
                     [self.transitionViewController showViewController:navigationController animated:YES];
                 }

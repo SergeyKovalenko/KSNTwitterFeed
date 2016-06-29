@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, AFMInfoBannerStyle) {
 @property (nonatomic) CGFloat minimumHeight;
 
 - (void)show:(BOOL)animated inView:(UIView *)view;
+- (void)show:(BOOL)animated inView:(UIView *)view belowSubview:(UIView *)siblingSubview;
 - (void)hide:(BOOL)animated;
 - (void)hideWithAnimatedNumber:(NSNumber *)animatedNumber;
 

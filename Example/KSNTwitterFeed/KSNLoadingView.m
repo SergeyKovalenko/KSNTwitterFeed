@@ -8,10 +8,13 @@
 
 #import <Masonry/View+MASAdditions.h>
 #import "KSNLoadingView.h"
+#import "KSNRefreshView.h"
+#import "KSNLoadingIndicator.h"
 
 @interface KSNLoadingView ()
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong, readwrite) KSNRefreshView *refreshView;
 @end
 
 @implementation KSNLoadingView
@@ -40,6 +43,17 @@
 
 - (void)commonInit
 {
+    KSNRefreshView *refreshView = [[KSNRefreshView alloc] initWithPosition:KSNRefreshViewPositionTop];
+    refreshView.pullTitle = NSLocalizedString(@"Pull down for refresh", nil);
+    refreshView.releaseTitle = NSLocalizedString(@"Release for refresh", nil);
+    [self addSubview:refreshView];
+    refreshView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [refreshView sizeToFit];
+    CGRect refreshRect = refreshView.frame;
+    refreshRect.size.width = CGRectGetWidth(self.bounds);
+    refreshView.frame = refreshRect;
+    self.refreshView = refreshView;
+
     UIView *contentView = [[UIView alloc] init];
     [self addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {

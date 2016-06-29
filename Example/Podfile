@@ -30,6 +30,7 @@ target 'KSNTwitterFeed_Example' do
         inherit! :search_paths
         
         pod 'Kiwi'
+        pod 'OCMock', '~> 3.1.2'
     end
 end
 

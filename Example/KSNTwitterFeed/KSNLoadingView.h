@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class KSNRefreshView;
+
 @interface KSNLoadingView : UIView
 
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicator;
 
+@property (nonatomic, strong, readonly) KSNRefreshView *refreshView;
 @end

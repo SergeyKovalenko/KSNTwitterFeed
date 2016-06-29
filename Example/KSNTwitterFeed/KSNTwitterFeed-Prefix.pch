@@ -18,6 +18,8 @@
 #import "NSObject+KSNModal.h"
 #import <KSNUtils/KSNGlobalFunctions.h>
 #import "KSNAppDelegate.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+
 #define APP_DELEGATE ((KSNAppDelegate *)[UIApplication sharedApplication].delegate)
 
 #endif

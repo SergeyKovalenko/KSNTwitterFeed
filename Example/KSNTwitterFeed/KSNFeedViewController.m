@@ -6,12 +6,17 @@
 #import <KSNErrorHandler/KSNErrorHandler.h>
 #import "KSNFeedViewController.h"
 #import "KSNLoadingView.h"
+#import "KSNRefreshMediatorInfo.h"
+#import "KSNRefreshMediator.h"
+#import "KSNRefreshView.h"
 
-@interface KSNFeedViewController () <ASTableDataSource, ASTableDelegate, KSNDataSourceObserver>
+@interface KSNFeedViewController () <ASTableDataSource, ASTableDelegate, KSNDataSourceObserver, KSNRefreshMediatorDelegate>
 
 @property (nonatomic, strong) ASTableNode *tableNode;
 
 @property (nonatomic, strong) KSNLoadingView *loadingView;
+@property (nonatomic, strong) KSNRefreshMediatorInfo *topRefreshMediatorInfo;
+@property (nonatomic, strong) KSNRefreshMediator *refreshMediator;
 @end
 
 @implementation KSNFeedViewController
@@ -51,9 +56,29 @@
 {
     [super viewDidLoad];
     [self.dataSource addChangeObserver:self];
-    [self refreshFeed];
     self.loadingView = [[KSNLoadingView alloc] init];
+    [self createRefreshMediator];
     self.tableNode.view.backgroundView = self.loadingView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self refreshFeed];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self scrollViewContentInsetsChanged];
+}
+
+- (void)scrollViewContentInsetsChanged
+{
+    if (!self.topRefreshMediatorInfo.isRefreshing)
+    {
+        [self.refreshMediator scrollViewContentInsetsChanged];
+    }
 }
 
 - (void)setDataSource:(id <KSNCellNodeDataSource>)dataSource
@@ -69,9 +94,20 @@
 
 #pragma mark - Internal Methods
 
+- (void)createRefreshMediator
+{
+    self.topRefreshMediatorInfo = [[KSNRefreshMediatorInfo alloc] initWithPosition:KSNRefreshViewPositionTop];
+    self.topRefreshMediatorInfo.refreshView = self.loadingView.refreshView;
+
+    self.refreshMediator = [[KSNRefreshMediator alloc] initWithRefreshInfo:@[self.topRefreshMediatorInfo]];
+    self.refreshMediator.scrollView = self.tableNode.view;
+    self.refreshMediator.delegate = self;
+}
+
 - (void)refreshFeed
 {
     [self.dataSource refreshWithCompletion:^{
+        [self.topRefreshMediatorInfo setRefreshing:NO animated:YES];
     }];
 }
 
@@ -80,6 +116,16 @@
     [self.dataSource loadNextPageWithCompletion:^{
         [context completeBatchFetching:YES];
     }];
+}
+
+#pragma mark - TRARefreshMediatorDelegate
+
+- (void)refreshMediator:(KSNRefreshMediator *)mediator didTriggerUpdateAtPossition:(KSNRefreshMediatorInfo *)position
+{
+    if (position == self.topRefreshMediatorInfo)
+    {
+        [self refreshFeed];
+    }
 }
 
 #pragma mark - ASTableDataSource
@@ -118,14 +164,35 @@
     [self loadNextPageWithContext:context];
 }
 
-#pragma mark - TRADataSourceObserver
-
-- (void)dataSource:(id <KSNDataSource>)dataSource updateFailedWithError:(NSError *)error
+- (void)startLoading
 {
-    [APP_DELEGATE.errorHandler handleError:error];
-    [self.loadingView.activityIndicator stopAnimating];
-    self.tableNode.view.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self.loadingView.activityIndicator startAnimating];
+    UIEdgeInsets insets = self.tableNode.view.contentInset;
+    insets.bottom += 55.f;
+    self.tableNode.view.contentInset = insets;
 }
+
+- (void)endLoading
+{
+    [self.loadingView.activityIndicator stopAnimating];
+    UIEdgeInsets insets = self.tableNode.view.contentInset;
+    insets.bottom -= 55.f;
+    self.tableNode.view.contentInset = insets;
+}
+
+#pragma mark - UIScrollViewDelegate methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.refreshMediator scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.refreshMediator scrollViewDidEndDragging];
+}
+
+#pragma mark - TRADataSourceObserver
 
 - (void)dataSourceRefreshed:(id <KSNDataSource>)dataSource userInfo:(NSDictionary *)userInfo
 {
@@ -134,14 +201,18 @@
 
 - (void)dataSourceBeginNetworkUpdate:(id <KSNDataSource>)dataSource
 {
-    [self.loadingView.activityIndicator startAnimating];
-    self.tableNode.view.contentInset = UIEdgeInsetsMake(0, 0, 55, 0);
+    [self startLoading];
 }
 
 - (void)dataSourceEndNetworkUpdate:(id <KSNDataSource>)dataSource
 {
-    [self.loadingView.activityIndicator stopAnimating];
-    self.tableNode.view.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self endLoading];
+}
+
+- (void)dataSource:(id <KSNDataSource>)dataSource updateFailedWithError:(NSError *)error
+{
+    [APP_DELEGATE.errorHandler handleError:error];
+    [self endLoading];
 }
 
 - (void)dataSource:(id <KSNDataSource>)datasource didChange:(KSNDataSourceChangeType)change atSectionIndex:(NSInteger)sectionIndex

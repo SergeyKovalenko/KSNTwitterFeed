@@ -7,6 +7,9 @@
 #import <KSNDataSource/KSNDataSource.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class KSNFeedDataProvider;
+
 @protocol KSNItemsStore <NSObject>
 
 - (void)registerItems:(NSArray *)items withChangeBlock:(void (^)(id item, NSIndexPath *insertedIndexPath))changeBlock;
@@ -19,8 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 // TODO: remove, update operations
 @end
 
-@protocol KSNFeedDataProvider;
-
 @protocol KSNFeedDataSource <KSNDataSource>
 
 - (BOOL)isLoading;
@@ -32,9 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KSNFeedDataSource <__covariant ObjectType> : KSNDataSource <KSNFeedDataSource>
 
-- (instancetype)initWithDataProvider:(id <KSNFeedDataProvider>)dataProvider itemsStore:(id <KSNItemsStore>)storeClass;
+- (instancetype)initWithDataProvider:(KSNFeedDataProvider *)dataProvider itemsStore:(id <KSNItemsStore>)storeClass;
 
 - (ObjectType)itemAtIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathOfItem:(ObjectType)item;
 
 @end
 

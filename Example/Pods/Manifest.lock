@@ -51,6 +51,7 @@ PODS:
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
   - Masonry (1.0.1)
+  - OCMock (3.1.5)
   - PINCache (2.2.2)
   - PINRemoteImage/Core (3.0.0-beta.2):
     - PINCache (>= 2.1)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - KSNUtils (from `../Development Pods/KSNUtils`)
   - MagicalRecord
   - Masonry
+  - OCMock (~> 3.1.2)
 
 EXTERNAL SOURCES:
   AFMInfoBanner:
@@ -107,10 +109,11 @@ SPEC CHECKSUMS:
   KSNUtils: ece85ea31aff17566156ff4b8a13d2f9fd93b815
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
+  OCMock: 4c2925291f80407c3738dd1db14d21d0cc278864
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
   PINRemoteImage: 197554c5ba57a6ae90f5db441651180039fc9062
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-PODFILE CHECKSUM: e3ab47fee9588b3e95e579fab06423e90dbe4ec5
+PODFILE CHECKSUM: 0b69a9d73a4ef0e68b47cc9f432120d9d80497c0
 
 COCOAPODS: 1.0.1

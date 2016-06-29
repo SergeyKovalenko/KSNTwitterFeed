@@ -77,6 +77,13 @@ static NSMapTable *createSignaturesForProtocolMethods(BOOL isRequiredMethod, Pro
     [_lock unlock];
 }
 
+- (void)setNotificationQueue:(dispatch_queue_t)notificationQueue
+{
+    [_lock lock];
+    _notificationQueue = notificationQueue;
+    [_lock unlock];
+}
+
 #pragma mark - NSProxy
 
 - (void)forwardInvocation:(NSInvocation *)invocation

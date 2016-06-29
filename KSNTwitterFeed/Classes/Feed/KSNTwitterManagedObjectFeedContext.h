@@ -3,15 +3,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KSNTwitterFeedDataProvider.h"
+#import "KSNFeedDataProvider.h"
 
 @class KSNTwitterAPI;
-@class KSNNetworkModelDeserializer;
+@class NSManagedObjectContext;
 @class NSFetchRequest;
 
-@interface KSNTwitterManagedObjectFeedContext : NSObject <KSNTwitterFeedContext>
+@interface KSNTwitterManagedObjectFeedContext : NSObject <KSNFeedDataProviderContext>
 
 - (instancetype)initWithAPI:(KSNTwitterAPI *)api managedObjectContect:(NSManagedObjectContext *)context;
+
+@property (nonatomic, assign) NSInteger pageSize;
 
 - (NSFetchRequest *)feedRequest;
 

@@ -6,7 +6,6 @@
 #import "KSNFeedDataProvider.h"
 #import "KSNFeedDataSource.h"
 #import "KSNManagedObjectStore.h"
-#import "KSNTwitterFeedDataProvider.h"
 #import "KSNTwitterManagedObjectFeedContext.h"
 #import "KSNTwitterFeed.h"
 #import "KSNSocialAdapter.h"
